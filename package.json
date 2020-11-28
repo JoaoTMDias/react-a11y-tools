@@ -1,4 +1,6 @@
 {
+  "name": "react-a11y-tools",
+	"author": "João Dias",
 	"version": "0.1.0",
 	"license": "MIT",
 	"main": "dist/index.js",
@@ -21,15 +23,12 @@
 		"size": "size-limit",
 		"analyze": "size-limit --why",
 		"storybook": "start-storybook -p 6006",
-		"build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    
+		"reinstall": "rm -rf node_modules && npm run clean && npm install"
 	},
 	"peerDependencies": {
 		"react": ">=16"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "tsdx lint"
-		}
 	},
 	"prettier": {
 		"printWidth": 120,
@@ -39,8 +38,6 @@
 		"trailingComma": "all",
 		"useTabs": true
 	},
-	"name": "react-a11y-tools",
-	"author": "João Dias",
 	"module": "dist/react-a11y-tools.esm.js",
 	"size-limit": [
 		{
@@ -64,6 +61,7 @@
 		"@types/react-dom": "^17.0.0",
 		"babel-loader": "^8.2.2",
 		"husky": "^4.3.0",
+		"lint-staged": "^10.5.2",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
 		"react-is": "^17.0.1",
@@ -71,5 +69,17 @@
 		"tsdx": "^0.14.1",
 		"tslib": "^2.0.3",
 		"typescript": "^4.1.2"
+  },
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx,html,css}": [
+			"npm run format:fix",
+			"tsdx lint",
+			"git add"
+		]
 	}
 }
