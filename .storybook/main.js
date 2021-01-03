@@ -1,8 +1,19 @@
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+
 module.exports = {
-	stories: ["../stories/**/*.stories.@(ts|tsx|js|jsx)"],
+	stories: ["../src/**/*.stories.@(ts|tsx|js|jsx|mdx)"],
 	addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
-	// https://storybook.js.org/docs/react/configure/typescript#mainjs-configuration
 	typescript: {
-		check: true, // type-check stories during Storybook build
+		reactDocgen: "react-docgen-typescript",
+		reactDocgenTypescriptOptions: {
+			compilerOptions: {
+				allowSyntheticDefaultImports: false,
+				esModuleInterop: false,
+			},
+		},
+	},
+	webpackFinal: async (config) => {
+		config.resolve.plugins.push(new TsconfigPathsPlugin({}));
+		return config;
 	},
 };

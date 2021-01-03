@@ -1,0 +1,57 @@
+import React from "react";
+import { render, RenderResult, queries } from "@testing-library/react";
+import { Router, createHistory, createMemorySource, LocationProvider, History } from "@reach/router";
+import "@testing-library/jest-dom/extend-expect";
+
+export interface RenderWithRouterOptions {
+	route?: string;
+	history?: History;
+}
+
+export interface IRenderWithRouter {
+	ui: React.ReactElement;
+	options?: RenderWithRouterOptions;
+}
+
+export interface IRenderWithRouterReturns extends RenderResult<typeof queries> {
+	history: History;
+}
+
+/**
+ * Renders a component wrapped inside a `@reach/router` instance.
+ * Adds `history` to the returned utilities to allow us to reference it in our tests
+ *
+ * @param {React.ReactElement} ui
+ * @param {RenderWithRouterOptions} [options]
+ * @returns {IRenderWithRouterReturns}
+ */
+export function renderWithRouter(
+	ui: React.ReactElement,
+	{ route = "/", history = createHistory(createMemorySource(route)) }: RenderWithRouterOptions = {},
+): IRenderWithRouterReturns {
+	return {
+		...render(<LocationProvider history={history}>{ui}</LocationProvider>),
+		history,
+	};
+}
+
+/**
+ * `renderWithRouter` with a Router wrapper from `@reach/router`
+ *
+ * @param {React.ReactElement} ui
+ * @param {RenderWithRouterOptions} [options]
+ * @returns {IRenderWithRouterReturns}
+ */
+export function renderWithRouterWrapper(
+	ui: React.ReactElement,
+	{ route = "/", history = createHistory(createMemorySource(route)) }: RenderWithRouterOptions = {},
+): IRenderWithRouterReturns {
+	return {
+		...render(
+			<LocationProvider history={history}>
+				<Router>{ui}</Router>
+			</LocationProvider>,
+		),
+		history,
+	};
+}

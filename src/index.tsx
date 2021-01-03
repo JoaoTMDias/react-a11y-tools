@@ -1,2 +1,1 @@
-export * from "./announcer";
-export * from "./rover";
+export * from "./components/announcer";

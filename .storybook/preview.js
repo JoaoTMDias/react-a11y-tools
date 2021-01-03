@@ -1,5 +1,10 @@
-// https://storybook.js.org/docs/react/writing-stories/parameters#global-parameters
 export const parameters = {
-	// https://storybook.js.org/docs/react/essentials/actions#automatically-matching-args
+	a11y: {
+		element: "#root",
+		config: {},
+		options: {},
+		manual: true,
+	},
+	viewMode: "docs",
 	actions: { argTypesRegex: "^on.*" },
 };
