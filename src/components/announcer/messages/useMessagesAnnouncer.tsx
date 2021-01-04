@@ -21,3 +21,5 @@ export function useMessagesAnnouncer(): TUseMessagesAnnouncerReturns {
 
 	return setMessage;
 }
+
+export default useMessagesAnnouncer;

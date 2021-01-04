@@ -1,40 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<RouteAnnouncer /> should render without errors 1`] = `
+exports[`<MessagesAnnouncer /> should render without errors 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
-        id="content-focus-wrapper"
-        style="outline: none;"
-        tabindex="-1"
-      >
-        <div
-          aria-atomic="true"
-          aria-live="assertive"
-          class="rat__announcer"
-          data-testid="rat-announcer"
-          id="rat-route-announcer"
-          style="position: absolute; top: 0px; width: 1px; height: 1px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border: 0px;"
-        />
+        aria-atomic="true"
+        aria-live="polite"
+        class="rat__announcer"
+        data-testid="rat-announcer"
+        id="notifications-announcer"
+        style="position: absolute; top: 0px; width: 1px; height: 1px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border: 0px;"
+      />
+      <div>
+        <button
+          type="button"
+        >
+          Send Message
+        </button>
+        <p>
+          children content
+        </p>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      id="content-focus-wrapper"
-      style="outline: none;"
-      tabindex="-1"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="assertive"
-        class="rat__announcer"
-        data-testid="rat-announcer"
-        id="rat-route-announcer"
-        style="position: absolute; top: 0px; width: 1px; height: 1px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border: 0px;"
-      />
+      aria-atomic="true"
+      aria-live="polite"
+      class="rat__announcer"
+      data-testid="rat-announcer"
+      id="notifications-announcer"
+      style="position: absolute; top: 0px; width: 1px; height: 1px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border: 0px;"
+    />
+    <div>
+      <button
+        type="button"
+      >
+        Send Message
+      </button>
+      <p>
+        children content
+      </p>
     </div>
   </div>,
   "debug": [Function],

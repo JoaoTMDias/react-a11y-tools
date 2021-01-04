@@ -6,13 +6,12 @@
  *
  * (c) 2021 joaodias.me
  */
-import React, { FunctionComponent, useEffect } from "react";
-import { screen, render, waitFor } from "@testing-library/react";
+import { Link, RouteComponentProps, Router, useLocation } from "@reach/router";
 import "@testing-library/jest-dom";
-import { Router, Link, RouteComponentProps, useLocation } from "@reach/router";
-import RouteAnnouncer, { defaultProps, hasHeading } from "../route-announcer";
-import { IRouteAnnouncerProps } from "../route-announcer";
+import { render, screen, waitFor } from "@testing-library/react";
+import React, { FunctionComponent, useEffect } from "react";
 import { renderWithRouter } from "../../../helpers/index";
+import RouteAnnouncer, { defaultProps, hasHeading, IRouteAnnouncerProps } from "../route-announcer";
 
 const Home: FunctionComponent<RouteComponentProps> = () => {
 	return (
@@ -107,7 +106,7 @@ describe("<RouteAnnouncer />", () => {
 		expect(screen.getByText("You are on the initial page")).toBeVisible();
 
 		// 3. The Announcer should not have any text
-		expect(screen.getByTestId("rat-route-announcer")).not.toHaveTextContent("Navigated to Home");
+		expect(screen.getByTestId("rat-announcer")).not.toHaveTextContent("Navigated to Home");
 	});
 
 	describe("should update the announcer when the location changes", () => {

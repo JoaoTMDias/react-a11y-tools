@@ -67,8 +67,8 @@ export const Announcer: FunctionComponent<IAnnouncerProps> = ({ id, styles, aria
 			id={id}
 			aria-live={ariaLive}
 			aria-atomic={ariaAtomic}
-			className="rat__route-announcer"
-			data-testid="rat-route-announcer"
+			className="rat__announcer"
+			data-testid="rat-announcer"
 			style={styles}
 		>
 			{renderText()}

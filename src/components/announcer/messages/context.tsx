@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /**
  * This file is open-source. This means that it can be reproduced in whole
  * or in part, stored in a retrieval system transmitted in any form, or by
@@ -17,12 +18,13 @@ export interface ISetMessage {
 export interface IMessagesAnnouncerContext {
 	message: string;
 	politeness: "assertive" | "polite";
-	setMessage?: (message: ISetMessage) => void;
+	setMessage: (message: ISetMessage) => void;
 }
 
 export const defaultMessagesAnnouncerContext: IMessagesAnnouncerContext = {
 	message: "",
 	politeness: "polite",
+	setMessage: () => { }
 };
 
 const MessagesAnnouncerContext = createContext<IMessagesAnnouncerContext>(defaultMessagesAnnouncerContext);
