@@ -9,8 +9,4 @@
 import MessagesAnnouncerContext from "./context";
 import MessagesAnnouncer from "./provider";
 export * from "./useMessagesAnnouncer";
-export {
-	MessagesAnnouncer,
-	MessagesAnnouncerContext,
-};
-
+export { MessagesAnnouncer, MessagesAnnouncerContext };

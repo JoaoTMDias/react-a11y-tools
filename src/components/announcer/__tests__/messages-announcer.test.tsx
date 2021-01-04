@@ -20,11 +20,7 @@ import { MessagesAnnouncer, useMessagesAnnouncer } from "../messages/index";
  * @returns {IRenderWithRouterReturns}
  */
 function renderWithContext(ui: React.ReactElement) {
-	return render(
-		<MessagesAnnouncer>
-			{ui}
-		</MessagesAnnouncer>
-	);
+	return render(<MessagesAnnouncer>{ui}</MessagesAnnouncer>);
 }
 
 const App: FunctionComponent<ISetMessage> = ({ text, politeness, children }): JSX.Element => {
@@ -33,12 +29,14 @@ const App: FunctionComponent<ISetMessage> = ({ text, politeness, children }): JS
 	function onClick() {
 		setMessage({
 			text,
-			politeness
+			politeness,
 		});
 	}
 	return (
 		<div>
-			<button type="button" onClick={onClick}>Send Message</button>
+			<button type="button" onClick={onClick}>
+				Send Message
+			</button>
 			{children}
 		</div>
 	);
@@ -50,12 +48,16 @@ describe("<MessagesAnnouncer />", () => {
 	beforeEach(() => {
 		props = {
 			text: "this is a test message",
-			politeness: "polite"
+			politeness: "polite",
 		};
 	});
 
 	it("should render without errors", () => {
-		const component = renderWithContext(<App {...props} ><p>children content</p></App>);
+		const component = renderWithContext(
+			<App {...props}>
+				<p>children content</p>
+			</App>,
+		);
 
 		expect(component).toMatchSnapshot();
 	});
@@ -75,8 +77,8 @@ describe("<MessagesAnnouncer />", () => {
 	it("should update the announcer with a new message", () => {
 		const customProps: ISetMessage = {
 			text: "this is a custom message",
-			politeness: "assertive"
-		}
+			politeness: "assertive",
+		};
 		renderWithContext(<App {...customProps} />);
 
 		const button = screen.getByText("Send Message");

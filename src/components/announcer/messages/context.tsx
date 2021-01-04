@@ -24,7 +24,8 @@ export interface IMessagesAnnouncerContext {
 export const defaultMessagesAnnouncerContext: IMessagesAnnouncerContext = {
 	message: "",
 	politeness: "polite",
-	setMessage: () => { }
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	setMessage: () => { },
 };
 
 const MessagesAnnouncerContext = createContext<IMessagesAnnouncerContext>(defaultMessagesAnnouncerContext);
