@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* istanbul ignore file */
 /**
  * This file is open-source. This means that it can be reproduced in whole
@@ -24,7 +25,6 @@ export interface IMessagesAnnouncerContext {
 export const defaultMessagesAnnouncerContext: IMessagesAnnouncerContext = {
 	message: "",
 	politeness: "polite",
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	setMessage: () => { },
 };
 
