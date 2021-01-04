@@ -25,7 +25,7 @@ export interface IMessagesAnnouncerContext {
 export const defaultMessagesAnnouncerContext: IMessagesAnnouncerContext = {
 	message: "",
 	politeness: "polite",
-	setMessage: () => { },
+	setMessage: () => {},
 };
 
 const MessagesAnnouncerContext = createContext<IMessagesAnnouncerContext>(defaultMessagesAnnouncerContext);
