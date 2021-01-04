@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`src/announcer/__tests__/route-announcer should render without errors 1`] = `
+exports[`<RouteAnnouncer /> should render without errors 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>

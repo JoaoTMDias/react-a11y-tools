@@ -1,3 +1,11 @@
+/**
+ * This file is open-source. This means that it can be reproduced in whole
+ * or in part, stored in a retrieval system transmitted in any form, or by
+ * any means electronic with my prior permission as an author and owner
+ * Please refer to the terms of the license agreement in the root of the project
+ *
+ * (c) 2021 joaodias.me
+ */
 import React, { FunctionComponent, memo } from "react";
 
 export interface IAnnouncerProps {
@@ -20,11 +28,31 @@ const styles: React.CSSProperties = {
 	border: 0,
 };
 
+/**
+ * Basic Announcer HTML element that tells a screen-reader of parts of the content that need the users attention.
+ * Depending on the type of "politeness", users can be interrupted/or not by these messages.
+ *
+ * @example <caption>Some types of announcements</caption>
+ *
+ * // Changing page routes on a single-page application.
+ * "Navigated to Create Account"
+ *
+ * // Status messages for form-related operations
+ * "Your email is on the way!"
+ * "Sorry, you need to fill the password field"
+ *
+ * // Notifications
+ * "There's a new message"
+ * "You're currently offline. Check your internet connection."
+ *
+ * @param {IAnnouncerProps} props
+ * @returns {JSX.Element}
+ */
 export const Announcer: FunctionComponent<IAnnouncerProps> = ({ id, styles, ariaLive, ariaAtomic, text }) => {
 	/**
+	 * Renders the contents inside the announcer div
 	 *
-	 *
-	 * @returns
+	 * @returns {string | null}
 	 */
 	function renderText() {
 		if (!text || text.length === 0) {

@@ -1,20 +1,29 @@
+/**
+ * This file is open-source. This means that it can be reproduced in whole
+ * or in part, stored in a retrieval system transmitted in any form, or by
+ * any means electronic with my prior permission as an author and owner
+ * Please refer to the terms of the license agreement in the root of the project
+ *
+ * (c) 2021 joaodias.me
+ */
 import React, { useState, useEffect, useCallback, FunctionComponent } from "react";
 import * as H from "history";
-import { usePrevious } from "../../hooks";
-import Announcer from "./announcer";
+import { usePrevious } from "../../../hooks";
+import Announcer from "../announcer";
 
+export interface IRouteAnnouncerActions {
+	navigation: string;
+	page: string;
+}
 export interface IRouteAnnouncerProps {
 	id?: string;
 	pathname?: H.History.Pathname;
-	action?: {
-		navigation: string;
-		page: string;
-	};
+	action?: IRouteAnnouncerActions;
 }
 
 export interface HasHeadingResults {
 	exists: boolean;
-	content: string | null;
+	content: string | undefined;
 }
 
 const DEFAULT_WRAPPER_ID = "content-focus-wrapper";
@@ -32,7 +41,7 @@ export const defaultProps: Partial<IRouteAnnouncerProps> = {
  *
  * @returns {boolean}
  */
-function hasDocumentTitle() {
+export function hasDocumentTitle(): boolean {
 	return !!document.title;
 }
 
@@ -42,22 +51,13 @@ function hasDocumentTitle() {
  * @param {string} id
  * @returns {HasHeadingResults}
  */
-function hasHeading(id = DEFAULT_WRAPPER_ID): HasHeadingResults {
+export function hasHeading(id: string): HasHeadingResults {
 	const firstHeading = document.querySelector(`#${id} h1`);
 
-	const results = {
-		exists: false,
-		content: null,
+	return {
+		exists: !!firstHeading,
+		content: firstHeading?.textContent || undefined,
 	};
-
-	if (firstHeading) {
-		return {
-			exists: true,
-			content: firstHeading?.textContent,
-		};
-	}
-
-	return results;
 }
 
 /**
@@ -94,9 +94,9 @@ export const RouteAnnouncer: FunctionComponent<IRouteAnnouncerProps> = ({ id, pa
 	 */
 	const setAnnouncerText = useCallback(() => {
 		const hasTitle = hasDocumentTitle();
-		const firstHeading = hasHeading(id);
+		const firstHeading = hasHeading(id ?? DEFAULT_WRAPPER_ID);
 
-		let pageName = `${action?.page} ${pathname}`;
+		let pageName = `${(action as IRouteAnnouncerActions).page} ${pathname}`;
 
 		if (hasTitle) {
 			pageName = document.title;
@@ -106,12 +106,10 @@ export const RouteAnnouncer: FunctionComponent<IRouteAnnouncerProps> = ({ id, pa
 			pageName = firstHeading.content;
 		}
 
-		const newAnnouncement = `${action?.navigation} ${pageName}`;
+		const newAnnouncement = `${(action as IRouteAnnouncerActions).navigation} ${pageName}`;
 
-		if (text !== newAnnouncement) {
-			setText(newAnnouncement);
-		}
-	}, [action, id, pathname, text]);
+		setText(newAnnouncement);
+	}, [action, id, pathname]);
 
 	useEffect(() => {
 		if (previousPathname && previousPathname !== pathname) {
@@ -121,7 +119,7 @@ export const RouteAnnouncer: FunctionComponent<IRouteAnnouncerProps> = ({ id, pa
 
 	return (
 		<div
-			id="content-focus-wrapper"
+			id={id}
 			style={{
 				outline: "none",
 			}}
