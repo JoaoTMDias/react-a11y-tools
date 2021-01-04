@@ -2,8 +2,22 @@ const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
 	stories: ["../src/**/*.stories.@(ts|tsx|js|jsx|mdx)"],
-	addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
+	addons: [
+		{
+			name: "@storybook/addon-docs",
+			options: {
+				mdxBabelOptions: {
+					babelrc: true,
+					configFile: true,
+				},
+				configureJSX: true,
+			},
+		},
+		"@storybook/addon-links",
+		"@storybook/addon-essentials",
+	],
 	typescript: {
+		check: true,
 		reactDocgen: "react-docgen-typescript",
 		reactDocgenTypescriptOptions: {
 			compilerOptions: {

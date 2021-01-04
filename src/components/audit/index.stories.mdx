@@ -1,0 +1,290 @@
+import { useState } from "react";
+import { Meta, Story, Canvas, Preview, ArgsTable, Subtitle } from "@storybook/addon-docs/blocks";
+import Audit, { defaultProps } from "./index";
+
+<Meta title="Components/Audit" component={Audit} />
+
+<style>{`
+	.layout {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		font-family: sans-serif;
+	}
+
+	.images {
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-gap: 1rem;
+		padding: 1rem 0;
+	}
+
+	.images__wrapper,
+	.images__wrapper img {
+		width: 100%;
+		height: auto;
+		margin: 0;
+		padding: 0;
+	}
+`}</style>
+
+export const images = [
+	{
+		id: "0",
+		author: "Alejandro Escamilla",
+		width: 640,
+		height: 480,
+		download_url: "https://picsum.photos/id/0/640/480",
+	},
+	{
+		id: "1",
+		author: "Alejandro Escamilla",
+		width: 640,
+		height: 480,
+		download_url: "https://picsum.photos/id/1/640/480",
+	},
+	{
+		id: "10",
+		width: 640,
+		height: 480,
+		download_url: "https://picsum.photos/id/10/640/480",
+	},
+	{
+		id: "100",
+		author: "Tina Rataj",
+		width: 640,
+		height: 480,
+		download_url: "https://picsum.photos/id/100/640/480",
+	},
+	{
+		id: "1000",
+		width: 640,
+		height: 480,
+		download_url: "https://picsum.photos/id/1000/640/480",
+	},
+	{
+		id: "1001",
+		author: "Danielle MacInnes",
+		width: 640,
+		height: 480,
+		download_url: "https://picsum.photos/id/1001/640/480",
+	},
+	{
+		id: "1002",
+		width: 640,
+		height: 480,
+		download_url: "https://picsum.photos/id/1002/640/480",
+	},
+	{
+		id: "1003",
+		author: "E+N Photographies",
+		width: 640,
+		height: 480,
+		download_url: "https://picsum.photos/id/1003/640/480",
+	},
+	{
+		id: "1004",
+		author: "Greg Rakozy",
+		width: 640,
+		height: 480,
+		download_url: "https://picsum.photos/id/1004/640/480",
+	},
+	{
+		id: "1005",
+		width: 640,
+		height: 480,
+		download_url: "https://picsum.photos/id/1005/640/480",
+	},
+	{
+		id: "1006",
+		author: "Vladimir Kudinov",
+		width: 640,
+		height: 480,
+		download_url: "https://picsum.photos/id/1006/640/480",
+	},
+];
+
+export const AuditInPage = (args) => {
+	function renderImages() {
+		const list = images.map((image) => {
+			const alt = image.author ? `Photo by ${image.author}` : null;
+			return (
+				<figure className="images__wrapper" key={image.id} id={image.id}>
+					<img src={image.download_url} width={image.width} height={image.height} loading="lazy" alt={alt} />
+				</figure>
+			);
+		});
+		return <section className="images">{list}</section>;
+	}
+	return (
+		<div className="layout">
+			<Audit {...args} />
+			<h2>Sample page</h2>
+			<a>Link without href</a>
+			<button type="button" tabIndex={1}>
+				Button with higher tabindex
+			</button>
+			<section className="checkboxes-section">
+				<fieldset>
+					<div className="checkbox column">
+						<input id="bell" type="checkbox" name="scientist" value="bell" />
+						<label htmlFor="bell">Alexander Graham Bell</label>
+						<input id="curry" type="checkbox" name="scientist" value="curry" />
+						<label htmlFor="curry">Marie Curie</label>
+						<input id="lovelace" type="checkbox" name="scientist" value="lovelace" />
+						<label htmlFor="lovelace">Ada Lovelace</label>
+						<input id="nobel" type="checkbox" name="scientist" value="nobel" />
+						<label htmlFor="nobel">Alfred Nobel</label>
+						<input id="pasteur" type="checkbox" name="scientist" value="pasteur" />
+						<label htmlFor="pasteur">Louis Pasteur</label>
+						<input id="tesla" type="checkbox" name="scientist" value="tesla" />
+						<label htmlFor="tesla">Nikola Tesla</label>
+					</div>
+				</fieldset>
+			</section>
+			<section className="checkboxes-section">
+				<fieldset>
+					<div className="checkbox column">
+						<input id="bell" type="checkbox" name="scientist" value="bell" />
+						<label htmlFor="bell">Alexander Graham Bell</label>
+						<input id="curry" type="checkbox" name="scientist" value="curry" />
+						<label htmlFor="curry">Marie Curie</label>
+						<input id="lovelace" type="checkbox" name="scientist" value="lovelace" />
+						<label htmlFor="lovelace">Ada Lovelace</label>
+						<input id="nobel" type="checkbox" name="scientist" value="nobel" />
+						<label htmlFor="nobel">Alfred Nobel</label>
+						<input id="pasteur" type="checkbox" name="scientist" value="pasteur" />
+						<label htmlFor="pasteur">Louis Pasteur</label>
+						<input id="tesla" type="checkbox" name="scientist" value="tesla" />
+						<label htmlFor="tesla">Nikola Tesla</label>
+					</div>
+					<legend>Invalid fieldset</legend>
+				</fieldset>
+			</section>
+			{renderImages()}
+		</div>
+	);
+};
+
+export const argTypes = {
+	deprecatedElements: {
+		table: {
+			category: "Deprecated",
+		},
+	},
+	deprecatedAttributes: {
+		table: {
+			category: "Deprecated",
+		},
+	},
+	imagesSrc: {
+		table: {
+			category: "Images",
+		},
+	},
+	imagesAlt: {
+		table: {
+			category: "Images",
+		},
+	},
+	emptyHref: {
+		table: {
+			category: "Links",
+		},
+	},
+	fieldsetLegend: {
+		table: {
+			category: "Forms",
+		},
+	},
+	colorBlindness: {
+		control: {
+			type: "select",
+			options: [
+				"protanopia",
+				"protanomaly",
+				"deuteranopia",
+				"deutranomaly",
+				"tritanopia",
+				"tritanomaly",
+				"achromatopsia",
+				"achromatomaly",
+				"blur",
+			],
+		},
+		table: {
+			category: "Emulate",
+		},
+	},
+	noMouse: {
+		table: {
+			category: "Emulate",
+		},
+	},
+	reducedMotion: {
+		table: {
+			category: "Emulate",
+		},
+	},
+	largeFont: {
+		table: {
+			category: "Emulate",
+		},
+	},
+	lang: {
+		table: {
+			category: "Internationalization",
+		},
+	},
+	dir: {
+		table: {
+			category: "Internationalization",
+		},
+	},
+	tableHeader: {
+		table: {
+			category: "Table",
+		},
+	},
+	tableNested: {
+		table: {
+			category: "Table",
+		},
+	},
+	tableSingleRow: {
+		table: {
+			category: "Table",
+		},
+	},
+	tableDeprecatedAttributes: {
+		table: {
+			category: "Table",
+		},
+	},
+	nestedButtons: {
+		table: {
+			category: "Links",
+		},
+	},
+};
+
+# Accessibility Audits
+
+<Subtitle>Subtitle here</Subtitle>
+
+## Usage
+
+text here
+
+<Canvas>
+	<Story name="All" args={defaultProps} argTypes={argTypes}>
+		{(args) => <AuditInPage {...args} />}
+	</Story>
+</Canvas>
+
+### Props
+
+<ArgsTable story="All" />
