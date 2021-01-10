@@ -1,41 +1,21 @@
-import { useState } from "react";
-import { Meta, Story, Canvas, Preview, ArgsTable, Subtitle } from "@storybook/addon-docs/blocks";
-import images from "./mocks/images";
-import Audit, { defaultProps } from "./index";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/*
+ * This file is open-source. This means that it can be reproduced in whole
+ * or in part, stored in a retrieval system transmitted in any form, or by
+ * any means electronic with my prior permission as an author and owner
+ * Please refer to the terms of the license agreement in the root of the project
+ *
+ * (c) 2021 joaodias.me, No Rights Reserved.
+ */
+import React, { FunctionComponent } from "react";
+import Audit from "../index";
+import { IAuditProps } from "../index.d";
+import images from "./images";
 
-<Meta title="Components/Audit" component={Audit} />
-
-<style>{`
-	.layout {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
-		font-family: sans-serif;
-	}
-
-	.images {
-		width: 100%;
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		grid-gap: 1rem;
-		padding: 1rem 0;
-	}
-
-	.images__wrapper,
-	.images__wrapper img {
-		width: 100%;
-		height: auto;
-		margin: 0;
-		padding: 0;
-	}
-`}</style>
-
-export const AuditInPage = (args) => {
+const AuditInPage: FunctionComponent<IAuditProps> = (args) => {
 	function renderImages() {
 		const list = images.map((image) => {
-			const alt = image.author ? `Photo by ${image.author}` : null;
+			const alt = image.author ? `Photo by ${image.author}` : undefined;
 			return (
 				<figure className="images__wrapper" key={image.id} id={image.id}>
 					<img src={image.download_url} width={image.width} height={image.height} loading="lazy" alt={alt} />
@@ -44,6 +24,7 @@ export const AuditInPage = (args) => {
 		});
 		return <section className="images">{list}</section>;
 	}
+
 	return (
 		<div className="layout">
 			<Audit {...args} />
@@ -94,122 +75,4 @@ export const AuditInPage = (args) => {
 	);
 };
 
-export const argTypes = {
-	deprecatedElements: {
-		table: {
-			category: "Deprecated",
-		},
-	},
-	deprecatedAttributes: {
-		table: {
-			category: "Deprecated",
-		},
-	},
-	imagesSrc: {
-		table: {
-			category: "Images",
-		},
-	},
-	imagesAlt: {
-		table: {
-			category: "Images",
-		},
-	},
-	emptyHref: {
-		table: {
-			category: "Links",
-		},
-	},
-	fieldsetLegend: {
-		table: {
-			category: "Forms",
-		},
-	},
-	colorBlindness: {
-		control: {
-			type: "select",
-			options: [
-				"protanopia",
-				"protanomaly",
-				"deuteranopia",
-				"deutranomaly",
-				"tritanopia",
-				"tritanomaly",
-				"achromatopsia",
-				"achromatomaly",
-				"blur",
-			],
-		},
-		table: {
-			category: "Emulate",
-		},
-	},
-	noMouse: {
-		table: {
-			category: "Emulate",
-		},
-	},
-	reducedMotion: {
-		table: {
-			category: "Emulate",
-		},
-	},
-	largeFont: {
-		table: {
-			category: "Emulate",
-		},
-	},
-	lang: {
-		table: {
-			category: "Internationalization",
-		},
-	},
-	dir: {
-		table: {
-			category: "Internationalization",
-		},
-	},
-	tableHeader: {
-		table: {
-			category: "Table",
-		},
-	},
-	tableNested: {
-		table: {
-			category: "Table",
-		},
-	},
-	tableSingleRow: {
-		table: {
-			category: "Table",
-		},
-	},
-	tableDeprecatedAttributes: {
-		table: {
-			category: "Table",
-		},
-	},
-	nestedButtons: {
-		table: {
-			category: "Links",
-		},
-	},
-};
-
-# Accessibility Audits
-
-<Subtitle>Subtitle here</Subtitle>
-
-## Usage
-
-text here
-
-<Canvas>
-	<Story name="All" args={defaultProps} argTypes={argTypes}>
-		{(args) => <AuditInPage {...args} />}
-	</Story>
-</Canvas>
-
-### Props
-
-<ArgsTable story="All" />
+export default AuditInPage;

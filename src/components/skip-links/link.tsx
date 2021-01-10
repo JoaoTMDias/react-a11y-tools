@@ -7,6 +7,7 @@
  * (c) 2021 joaodias.me
  */
 import React, { FunctionComponent } from "react";
+import Link from "./styles";
 
 export interface ISkipLink {
 	target: string;
@@ -25,9 +26,9 @@ export const SKIP_LINK_DEFAULT_PROPS = {
  * @returns {JSX.Element}
  */
 export const SkipLink: FunctionComponent<ISkipLink> = ({ target, text }) => (
-	<a href={target} className="skip-links__item">
+	<Link href={target} className="skip-links__item">
 		{text}
-	</a>
+	</Link>
 );
 
 SkipLink.defaultProps = SKIP_LINK_DEFAULT_PROPS;

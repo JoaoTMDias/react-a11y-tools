@@ -13,7 +13,7 @@ import React, { FunctionComponent } from "react";
  */
 const SVGColorBlindnessFilters: FunctionComponent = () => {
 	return (
-		<svg height="0">
+		<svg height="0" data-testid="audit-svg-filter">
 			<filter id="protanopia">
 				<feColorMatrix
 					type="matrix"
