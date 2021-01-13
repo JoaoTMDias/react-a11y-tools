@@ -325,8 +325,8 @@ export const Global = createGlobalStyle<IAuditProps>`
 		`}
 
 ${({ headings }) =>
-		headings &&
-		css`
+	headings &&
+	css`
 		h1 {
 			${errorLabel("h1")}
 		}

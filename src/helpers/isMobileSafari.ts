@@ -10,7 +10,7 @@
 export const isMobileSafari =
 	typeof window !== "undefined" && window.navigator != null
 		? /AppleWebKit/.test(window.navigator.userAgent) &&
-		(/^(iPhone|iPad)$/.test(window.navigator.platform) ||
-			// iPadOS 13 lies and says its a Mac, but we can distinguish by detecting touch support.
-			(window.navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1))
+		  (/^(iPhone|iPad)$/.test(window.navigator.platform) ||
+				// iPadOS 13 lies and says its a Mac, but we can distinguish by detecting touch support.
+				(window.navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1))
 		: false;

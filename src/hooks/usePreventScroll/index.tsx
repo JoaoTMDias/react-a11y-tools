@@ -31,10 +31,7 @@ export function usePreventScroll(options: IPreventScrollOptions = { isDisabled: 
 	// eslint-disable-next-line consistent-return
 	useLayoutEffect(() => {
 		if (!isDisabled) {
-			return isMobileSafari
-				/* istanbul ignore next */
-				? preventScrollMobileSafari()
-				: preventScrollStandard();
+			return isMobileSafari ? /* istanbul ignore next */ preventScrollMobileSafari() : preventScrollStandard();
 		}
 
 		return undefined;
