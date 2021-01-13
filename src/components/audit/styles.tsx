@@ -17,10 +17,11 @@ const errorLabel = (content: string, top: number | string = 0, position = "relat
 			position: ${position};
 			top: ${top};
 			left: 0;
+			letter-spacing: 0.25px;
 			padding: 4px 8px;
 			background: black;
 			color: white;
-			font-size: 14px;
+			font-size: 12px;
 			font-family: monospace;
 			border-radius: 2rem;
 		}
@@ -322,4 +323,32 @@ export const Global = createGlobalStyle<IAuditProps>`
 				content: "ERROR: List markup invalid" !important;
 			}
 		`}
+
+${({ headings }) =>
+		headings &&
+		css`
+		h1 {
+			${errorLabel("h1")}
+		}
+
+		h2 {
+			${errorLabel("h2")}
+		}
+
+		h3 {
+			${errorLabel("h3")}
+		}
+
+		h4 {
+			${errorLabel("h4")}
+		}
+
+		h5 {
+			${errorLabel("h5")}
+		}
+
+		h6 {
+			${errorLabel("h6")}
+		}
+	`}
 `;

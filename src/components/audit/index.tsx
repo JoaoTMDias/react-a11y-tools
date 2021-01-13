@@ -33,6 +33,7 @@ export const defaultProps = {
 	list: true,
 	nestedButtons: true,
 	tabIndex: true,
+	headings: true,
 };
 
 /**

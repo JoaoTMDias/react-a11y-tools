@@ -203,4 +203,9 @@ export interface IAuditProps {
 	 * `tabIndex`
 	 */
 	tabIndex?: boolean;
+
+	/**
+	 * Heading order
+	 */
+	headings?: boolean;
 }
