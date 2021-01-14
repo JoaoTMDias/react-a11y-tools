@@ -8,6 +8,8 @@
  */
 import { chain, getScrollParent } from "../../helpers/index";
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 const visualViewport = typeof window !== "undefined" && window.visualViewport;
 
 // HTML input types that do not cause the software keyboard to appear.
