@@ -10,8 +10,8 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React, { FunctionComponent } from "react";
-import { ISetMessage } from "../messages/context";
-import { MessagesAnnouncer, useMessagesAnnouncer } from "../messages/index";
+import { ISetMessage } from "../../../src/components/announcer/messages/context";
+import { MessagesAnnouncer, useMessagesAnnouncer } from "../../../src/components/announcer/messages/index";
 
 /**
  * Renders a component inside a `MessagesAnnouncer` context provider.

@@ -20,11 +20,6 @@ export interface IVisuallyHiddenProps {
 	isFocusable?: boolean;
 }
 
-export const defaultProps: Partial<IVisuallyHiddenProps> = {
-	as: "div",
-	isFocusable: false,
-};
-
 /**
  * VisuallyHidden hides its children visually, while keeping content visible
  * to screen readers.
@@ -32,7 +27,11 @@ export const defaultProps: Partial<IVisuallyHiddenProps> = {
  * @param {FunctionComponent<VisuallyHiddenProps>} props
  * @returns {JSX.Element}
  */
-const VisuallyHidden: FunctionComponent<IVisuallyHiddenProps> = ({ children, as, isFocusable }) => {
+export const VisuallyHidden: FunctionComponent<IVisuallyHiddenProps> = ({
+	children,
+	as = "div",
+	isFocusable = false,
+}) => {
 	const tabIndex = isFocusable ? 0 : undefined;
 
 	return (
@@ -41,7 +40,3 @@ const VisuallyHidden: FunctionComponent<IVisuallyHiddenProps> = ({ children, as,
 		</Container>
 	);
 };
-
-VisuallyHidden.defaultProps = defaultProps;
-
-export default VisuallyHidden;

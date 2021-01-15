@@ -6,8 +6,8 @@
  *
  * (c) 2021 joaodias.me
  */
-import React, { useState, useEffect, useCallback, FunctionComponent } from "react";
 import * as H from "history";
+import React, { FunctionComponent, useCallback, useEffect, useState } from "react";
 import { usePrevious } from "../../../hooks";
 import Announcer from "../announcer";
 
@@ -94,6 +94,7 @@ export const RouteAnnouncer: FunctionComponent<IRouteAnnouncerProps> = ({ id, pa
 	 */
 	const setAnnouncerText = useCallback(() => {
 		const hasTitle = hasDocumentTitle();
+		/* istanbul ignore next */
 		const firstHeading = hasHeading(id ?? DEFAULT_WRAPPER_ID);
 
 		let pageName = `${(action as IRouteAnnouncerActions).page} ${pathname}`;
@@ -132,5 +133,3 @@ export const RouteAnnouncer: FunctionComponent<IRouteAnnouncerProps> = ({ id, pa
 };
 
 RouteAnnouncer.defaultProps = defaultProps;
-
-export default RouteAnnouncer;

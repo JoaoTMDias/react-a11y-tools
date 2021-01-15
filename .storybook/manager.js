@@ -2,8 +2,8 @@ import { addons } from "@storybook/addons";
 import { create } from "@storybook/theming/create";
 
 const theme = create({
-	base: "light",
-	brandTitle: "React A11y Tools",
+	base: "dark",
+	brandTitle: "React a11y Tools",
 });
 
 addons.setConfig({

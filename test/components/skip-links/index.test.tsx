@@ -6,10 +6,10 @@
  *
  * (c) 2021 joaodias.me
  */
-import React from "react";
 import { render } from "@testing-library/react";
-import { SkipLink, SKIP_LINK_DEFAULT_PROPS } from "../link";
-import SkipLinks, { ISkipLinksProps } from "../index";
+import React from "react";
+import { ISkipLinksProps, SkipLinks } from "../../../src/components/skip-links/index";
+import { SkipLink, SKIP_LINK_DEFAULT_PROPS } from "../../../src/components/skip-links/link";
 
 describe("<SkipLinks>", () => {
 	let props: ISkipLinksProps;

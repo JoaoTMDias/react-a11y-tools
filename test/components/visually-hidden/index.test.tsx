@@ -18,14 +18,15 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
-import VisuallyHidden, { defaultProps, IVisuallyHiddenProps } from "../index";
+import { IVisuallyHiddenProps, VisuallyHidden } from "../../../src/components/visually-hidden/index";
 
 describe("<VisuallyHidden>", () => {
 	let props: IVisuallyHiddenProps;
 
 	beforeEach(() => {
 		props = {
-			...defaultProps,
+			as: "div",
+			isFocusable: false,
 		};
 	});
 

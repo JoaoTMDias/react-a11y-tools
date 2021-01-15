@@ -28,7 +28,7 @@ import MessagesAnnouncerContext, { defaultMessagesAnnouncerContext, IMessagesAnn
  * @param {FunctionComponent} props
  * @returns {JSX.Element}
  */
-const MessagesAnnouncer: FunctionComponent = ({ children }) => {
+export const MessagesAnnouncer: FunctionComponent = ({ children }) => {
 	const [politeness, setPoliteness] = useState(defaultMessagesAnnouncerContext.politeness);
 	const [message, setMessage] = useState(defaultMessagesAnnouncerContext.message);
 
@@ -62,5 +62,3 @@ const MessagesAnnouncer: FunctionComponent = ({ children }) => {
 		</MessagesAnnouncerContext.Provider>
 	);
 };
-
-export default MessagesAnnouncer;

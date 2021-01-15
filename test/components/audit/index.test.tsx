@@ -1,11 +1,3 @@
-/*
- * This file is open-source. This means that it can be reproduced in whole
- * or in part, stored in a retrieval system transmitted in any form, or by
- * any means electronic with my prior permission as an author and owner
- * Please refer to the terms of the license agreement in the root of the project
- *
- * (c) 2021 joaodias.me, No Rights Reserved.
- */
 /**
  * This file is open-source. This means that it can be reproduced in whole
  * or in part, stored in a retrieval system transmitted in any form, or by
@@ -17,9 +9,9 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import { defaultProps } from "../index";
-import { IAuditProps } from "../index.d";
-import AuditInPage from "../mocks/AuditInPage";
+import { defaultProps } from "../../../src/components/audit/index";
+import { IAuditProps } from "../../../src/components/audit/index.d";
+import AuditInPage from "./mocks/AuditInPage";
 
 describe("<Audit>", () => {
 	let props: IAuditProps;

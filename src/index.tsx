@@ -7,4 +7,20 @@
  *
  * (c) 2021 joaodias.me
  */
-export * from "./components/announcer";
+export * from "./components/announcer/messages/index";
+export {
+	defaultProps as RouteDefaultProps,
+	IRouteAnnouncerActions,
+	IRouteAnnouncerProps,
+	RouteAnnouncer,
+} from "./components/announcer/route-announcer";
+export * from "./components/audit";
+export {
+	FocusTrap,
+	IFocusManager,
+	IFocusManagerOptions,
+	IFocusTrapProps,
+	useFocusManager,
+} from "./components/focus-trap";
+export * from "./components/skip-links";
+export { IVisuallyHiddenProps, VisuallyHidden } from "./components/visually-hidden";

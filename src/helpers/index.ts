@@ -11,4 +11,3 @@ export * from "./chain";
 export * from "./getScrollParent";
 export * from "./isBrowser";
 export * from "./isMobileSafari";
-export * from "./renderWithRouter";

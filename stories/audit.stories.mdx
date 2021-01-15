@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Meta, Story, Canvas, Preview, ArgsTable, Subtitle } from "@storybook/addon-docs/blocks";
-import images from "./mocks/images";
-import Audit, { defaultProps } from "./index";
+import images from "../test/components/audit/mocks/images";
+import { Audit, defaultProps } from "../src/components/audit/index";
 
-<Meta title="Components/Audit" component={Audit} />
+<Meta title="Components/Audit" component={Audit} parameters={{ previewTabs: { canvas: { hidden: true } } }} />
 
 <style>{`
 	.layout {
@@ -205,11 +205,11 @@ export const argTypes = {
 text here
 
 <Canvas>
-	<Story name="All" args={defaultProps} argTypes={argTypes}>
+	<Story name="Audit" args={defaultProps} argTypes={argTypes}>
 		{(args) => <AuditInPage {...args} />}
 	</Story>
 </Canvas>
 
 ### Props
 
-<ArgsTable story="All" />
+<ArgsTable story="Audit" />

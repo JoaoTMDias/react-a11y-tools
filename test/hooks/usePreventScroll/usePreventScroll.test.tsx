@@ -6,9 +6,10 @@
  *
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
+import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import React from "react";
-import { IPreventScrollOptions, usePreventScroll } from "../usePreventScroll/index";
+import { IPreventScrollOptions, usePreventScroll } from "../../../src/hooks/usePreventScroll/index";
 
 function Example(props: IPreventScrollOptions) {
 	usePreventScroll(props);

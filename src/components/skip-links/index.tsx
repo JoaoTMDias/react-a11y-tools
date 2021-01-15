@@ -7,7 +7,7 @@
  * (c) 2021 joaodias.me
  */
 import React, { FunctionComponent } from "react";
-import { SkipLink, ISkipLink, SKIP_LINK_DEFAULT_PROPS } from "./link";
+import { ISkipLink, SkipLink, SKIP_LINK_DEFAULT_PROPS } from "./link";
 
 export interface ISkipLinksProps {
 	items?: ISkipLink[];
@@ -20,22 +20,28 @@ export interface ISkipLinksProps {
  * @param {ISkipLinksProps} props
  * @returns {JSX.Element}
  */
-const SkipLinks: FunctionComponent<ISkipLinksProps> = ({ items }) => {
+export const SkipLinks: FunctionComponent<ISkipLinksProps> = ({ items }) => {
+	/**
+	 * Renders a list of `SkipLink` components
+	 *
+	 * @returns {JSX.Element}
+	 */
 	function renderLinks() {
 		const list =
-			items && items.length > 0 ? (
+			items && items?.length > 0 ? (
 				items.map((item) => <SkipLink key={item.target} target={item.target} text={item.text} />)
 			) : (
 				<SkipLink target={SKIP_LINK_DEFAULT_PROPS.target} text={SKIP_LINK_DEFAULT_PROPS.text} />
 			);
 
-		return <>{list}</>;
+		return (
+			<div className="skip-links" data-testid="skip-links">
+				{list}
+			</div>
+		);
 	}
-	return (
-		<div data-testid="skip-links" className="skip-links">
-			{renderLinks()}
-		</div>
-	);
+
+	return renderLinks();
 };
 
 SkipLinks.defaultProps = {
@@ -45,5 +51,3 @@ SkipLinks.defaultProps = {
 		},
 	],
 };
-
-export default SkipLinks;

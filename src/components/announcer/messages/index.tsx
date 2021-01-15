@@ -6,7 +6,5 @@
  *
  * (c) 2021 joaodias.me
  */
-import MessagesAnnouncerContext from "./context";
-import MessagesAnnouncer from "./provider";
+export * from "./provider";
 export * from "./useMessagesAnnouncer";
-export { MessagesAnnouncer, MessagesAnnouncerContext };

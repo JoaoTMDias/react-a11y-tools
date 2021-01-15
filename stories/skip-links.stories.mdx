@@ -1,0 +1,120 @@
+<!---index.stories.mdx --->
+
+import { Meta, Story, Canvas, Preview, ArgsTable, Subtitle } from "@storybook/addon-docs/blocks";
+import { options } from "./mocks/skip-links.mocks";
+import { SkipLinks } from "../src/components/skip-links/index";
+
+<Meta title="Components" component={SkipLinks} parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+
+<style>{`
+	.layout {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		font-family: sans-serif;
+	}
+
+	.header {
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.menu,
+	.main {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.menu ul {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+		gap: 1rem;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+`}</style>
+
+export const Template = (args) => {
+	return (
+		<div>
+			<SkipLinks {...args} />
+			<div className="layout">
+				<header className="header">
+					<h1>Demo Page</h1>
+					<nav id="navigation-menu" className="menu" tabIndex={-1}>
+						<ul>
+							<li>
+								<a href="#website">Link 1</a>
+							</li>
+							<li>
+								<a href="#documentation">Link 2</a>
+							</li>
+							<li>
+								<a href="#gitlab">Link 3</a>
+							</li>
+						</ul>
+					</nav>
+				</header>
+				<main className="main" tabIndex={-1}>
+					<h2 id="content">This is the content</h2>
+					<p>
+						Lorem ipsum dolor sit amet, sed at alia posse minimum. Has adhuc liberavisse ne, movet laboramus
+						consequuntur vis in. Et has causae feugait atomorum, ad vel falli invenire. Rebum possit partiendo vix ad,
+						ei vix tota nullam vocent.
+					</p>
+					<a
+						id="website"
+						href="https://github.com/JoaoTMDias/react-accessible-tools"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Github Website
+					</a>
+					<a id="documentation" href="http://www.npmjs.org/" target="_blank" rel="noopener noreferrer">
+						NPM.js
+					</a>
+				</main>
+			</div>
+		</div>
+	);
+};
+
+# Skip Links
+
+<Subtitle>
+	Provide ways for users to skip to important sections of our websites. It helps users using screen-readers to navigate
+	easier and more efficiently.
+</Subtitle>
+
+## Usage
+
+Press the <kbd>`tab`</kbd> key and you'll see that there is only one skip link being shown.
+Press <kbd>`enter`</kbd> when it is visible and you'll set focus on the area of that `id`.
+
+<Canvas>
+	<Story
+		name="Skip Links"
+		args={{
+			items: options.multiple,
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+</Canvas>
+
+### Props
+
+<ArgsTable story="Skip Links" />
+
+We can even preview multiple Stories in a block. This
+gets rendered as a group, but defines individual stories
+with unique URLs which is great for review and testing.

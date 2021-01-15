@@ -8,44 +8,38 @@
  */
 import styled from "styled-components";
 
-const Link = styled.a`
-	border-radius: 2.25rem;
+export const Link = styled.a`
+	--link-background: #111;
+	--link-color: #fff;
 	position: absolute;
-	top: 0.5rem;
-	left: 4rem;
+	top: 1rem;
+	left: 2rem;
 	right: auto;
+	font-size: 0.875rem;
+	font-family: sans-serif;
+	background: var(--link-background, #111);
+	color: var(--link-color, #fff);
 	display: flex;
-	font-size: 0.75rem;
-	font-weight: 700;
-	height: 2.25rem;
 	justify-content: center;
-	letter-spacing: 1px;
-	line-height: 2.25rem;
-	opacity: 1;
-	outline-color: var(--color-gray1, #ecedf0);
-	padding: 0 0.5rem;
-	position: fixed;
-	right: 0;
+	letter-spacing: 0.5px;
+	line-height: 2rem;
+	padding: 0 1rem;
 	text-align: center;
 	text-decoration: none;
-	text-transform: uppercase;
-	transition: all 64ms ease-in-out;
-	width: 12.5rem;
-	z-index: 3;
+	height: 2rem;
+	min-width: 10rem;
+	z-index: 100;
 
 	&:not(:focus) {
 		border: 0;
-		bottom: 0;
-		clip-path: inset(50%);
 		clip: rect(0 0 0 0);
-		height: 1px;
-		left: -624.9375rem;
-		margin: -1px;
-		opacity: 0;
+		height: auto;
+		margin: 0;
 		overflow: hidden;
 		padding: 0;
-		white-space: nowrap;
+		position: absolute !important;
 		width: 1px;
+		white-space: nowrap;
 	}
 `;
 

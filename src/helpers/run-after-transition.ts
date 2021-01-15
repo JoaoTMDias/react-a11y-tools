@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /*
  * This file is open-source. This means that it can be reproduced in whole
  * or in part, stored in a retrieval system transmitted in any form, or by
@@ -6,18 +7,15 @@
  *
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
-import styled from "styled-components";
+const transitionsByElement = new Map<EventTarget, Set<string>>();
+const transitionCallbacks = new Set<() => void>();
 
-const Container = styled.div`
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: auto;
-	margin: 0;
-	overflow: hidden;
-	padding: 0;
-	position: absolute !important;
-	width: 1px;
-	white-space: nowrap;
-`;
-
-export default Container;
+export function runAfterTransition(fn: () => void): void {
+	requestAnimationFrame(() => {
+		if (transitionsByElement.size === 0) {
+			fn();
+		} else {
+			transitionCallbacks.add(fn);
+		}
+	});
+}

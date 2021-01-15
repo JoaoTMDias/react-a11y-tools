@@ -8,8 +8,8 @@
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
 import React, { FunctionComponent } from "react";
-import Audit from "../index";
-import { IAuditProps } from "../index.d";
+import { Audit } from "../../../../src/components/audit/index";
+import { IAuditProps } from "../../../../src/components/audit/index.d";
 import images from "./images";
 
 const AuditInPage: FunctionComponent<IAuditProps> = (args) => {

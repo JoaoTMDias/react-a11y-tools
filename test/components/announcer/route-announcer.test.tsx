@@ -10,8 +10,8 @@ import { Link, RouteComponentProps, Router, useLocation } from "@reach/router";
 import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@testing-library/react";
 import React, { FunctionComponent, useEffect } from "react";
-import { renderWithRouter } from "../../../helpers/index";
-import RouteAnnouncer, { defaultProps, hasHeading, IRouteAnnouncerProps } from "../route-announcer";
+import { defaultProps, hasHeading, IRouteAnnouncerProps, RouteAnnouncer } from "../../../src/components/announcer/route-announcer";
+import { renderWithRouter } from "../../helpers/renderWithRouter";
 
 const Home: FunctionComponent<RouteComponentProps> = () => {
 	return (

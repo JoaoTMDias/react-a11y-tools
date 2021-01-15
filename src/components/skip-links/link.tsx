@@ -7,7 +7,7 @@
  * (c) 2021 joaodias.me
  */
 import React, { FunctionComponent } from "react";
-import Link from "./styles";
+import { Link } from "./styles";
 
 export interface ISkipLink {
 	target: string;

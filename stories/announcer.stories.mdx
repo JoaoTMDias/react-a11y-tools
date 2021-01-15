@@ -1,0 +1,123 @@
+import { createHistory, Link, LocationProvider, Router } from "@reach/router";
+import { ArgsTable, Canvas, Meta, Story, Subtitle } from "@storybook/addon-docs/blocks";
+import { RouteAnnouncer } from "../src/components/announcer/route-announcer";
+
+<Meta
+	title="Components/Announcer"
+	component={RouteAnnouncer}
+	parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+<style>{`
+	.page {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		font-family: sans-serif;
+		background: black;
+		color: white;
+		padding: 2rem;
+	}
+
+	a {
+		color: white;
+		text-decoration: none;
+	}
+
+	.nav {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
+	}
+
+	a[aria-current="page"] {
+		text-decoration: underline;
+	}
+`}</style>
+
+export let history = createHistory(window);
+
+export const Home = () => (
+	<div className="page">
+		<h1>Welcome</h1>
+		<p>You are on the welcome page</p>
+	</div>
+);
+
+export const Dashboard = () => (
+	<div className="page">
+		<h1>Dashboard</h1>
+		<p>You are on the dashboard page</p>
+	</div>
+);
+
+export const Invoice = (props) => (
+	<div className="page">
+		<h1>Invoice {props.invoiceId}</h1>
+		<p>You are on the invoice page</p>
+	</div>
+);
+
+export const DemoWithRouter = () => {
+	return (
+		<LocationProvider history={history}>
+			{(context) => {
+				return (
+					<div className="page">
+						<RouteAnnouncer pathname={context.location.pathname}>
+							<nav className="nav">
+								<Link to="/">Home</Link>
+								<Link to="/dashboard">Dashboard</Link>
+								<Link to="/invoices/123">Invoice 123</Link>
+								<Link to="/invoices/abc">Invoice ABC</Link>
+							</nav>
+							<Router basepath="/">
+								<Home path="/" />
+								<Dashboard path="/dashboard" />
+								<Invoice path="/invoices/:invoiceId" />
+							</Router>
+						</RouteAnnouncer>
+					</div>
+				);
+			}}
+		</LocationProvider>
+	);
+};
+
+# Route Announcer
+
+<Subtitle>
+	<code>Flex</code> is a flexbox helper component and comes with helpful style shorthand. It renders a div element, but
+	can render another type of <code>HTMLElement</code> using the prop <code>as</code>.
+</Subtitle>
+
+<Canvas>
+	<Story
+		name="Route Announcer"
+		args={{
+			pathname: window.location.pathname,
+		}}
+	>
+		{() => <DemoWithRouter />}
+	</Story>
+</Canvas>
+
+### Props
+
+<ArgsTable story="Route Announcer" />
+
+## Usage
+
+Using the Flex components, here are some helpful shorthand props:
+
+- `flexDirection` is `direction`.
+- `flexWrap` is `wrap`.
+- `flexBasis` is `basis`.
+- `flexGrow` is `grow`.
+- `flexShrink` is `shrink`.
+- `alignItems` is `align`.
+- `justifyContent` is `justify`.
+- `gap` is `gap` (with fallback for older browsers).
+
+While you can write the CSS styles, using this helper can save you some time.

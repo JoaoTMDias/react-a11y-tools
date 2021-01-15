@@ -43,7 +43,7 @@ export const defaultProps = {
  *
  * @param {IAuditProps} props
  */
-const Audit: FunctionComponent<IAuditProps> = (props) => {
+export const Audit: FunctionComponent<IAuditProps> = (props) => {
 	return (
 		<>
 			<Global {...props} />
@@ -53,5 +53,3 @@ const Audit: FunctionComponent<IAuditProps> = (props) => {
 };
 
 Audit.defaultProps = defaultProps;
-
-export default Audit;
