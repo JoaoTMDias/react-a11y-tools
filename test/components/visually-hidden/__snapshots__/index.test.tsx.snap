@@ -6,14 +6,14 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-bdfBwQ ehVrfP visually-hidden"
+        class="sr-only visually-hidden"
         data-testid="visually-hidden-container"
       />
     </div>
   </body>,
   "container": <div>
     <div
-      class="sc-bdfBwQ ehVrfP visually-hidden"
+      class="sr-only visually-hidden"
       data-testid="visually-hidden-container"
     />
   </div>,

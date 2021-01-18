@@ -7,9 +7,11 @@
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
 
+import classNames from "classnames";
 import React, { FunctionComponent } from "react";
+import { useSafeLayoutEffect } from "../../hooks/index";
 import { IAuditProps } from "./index.d";
-import { Global } from "./styles";
+import "./styles.css";
 import SVGColorBlindnessFilters from "./svg-filters";
 
 export const defaultProps = {
@@ -36,6 +38,9 @@ export const defaultProps = {
 	headings: true,
 };
 
+const addClass = (className: string[]) => document.documentElement.classList.add(...className);
+const removeClass = (className: string[]) => document.documentElement.classList.remove(...className);
+
 /**
  * Accessibility Audit component
  * Tests the UI against common accessibility pitfalls and also enables
@@ -44,9 +49,49 @@ export const defaultProps = {
  * @param {IAuditProps} props
  */
 export const Audit: FunctionComponent<IAuditProps> = (props) => {
+	useSafeLayoutEffect(() => {
+		const classes = classNames({
+			"deprecated-elements": props.deprecatedElements,
+			"deprecated-attributes": props.deprecatedAttributes,
+			"images-src": props.imagesSrc,
+			"images-alt": props.imagesAlt,
+			"empty-href": props.emptyHref,
+			"fieldset-legend": props.fieldsetLegend,
+			"color-blindness-none": !props.colorBlindness,
+			"color-blindness-blur": props.colorBlindness === "blur",
+			"color-blindness-deuteranopia": props.colorBlindness === "deuteranopia",
+			"color-blindness-deutranomaly": props.colorBlindness === "deutranomaly",
+			"color-blindness-achromatomaly": props.colorBlindness === "achromatomaly",
+			"color-blindness-achromatopsia": props.colorBlindness === "achromatopsia",
+			"color-blindness-protanomaly": props.colorBlindness === "protanomaly",
+			"color-blindness-protanopia": props.colorBlindness === "protanopia",
+			"color-blindness-tritanomaly": props.colorBlindness === "tritanomaly",
+			"color-blindness-tritanopia": props.colorBlindness === "tritanopia",
+			"no-mouse": props.noMouse,
+			"reduce-motion": props.reducedMotion,
+			"large-font": props.largeFont,
+			"i18n-lang": props.lang,
+			"i18n-dir": props.dir,
+			"nested-buttons": props.nestedButtons,
+			title: props.title,
+			"table-header": props.tableHeader,
+			"table-single-row": props.tableSingleRow,
+			"table-nested": props.tableNested,
+			"table-deprecated-attributes": props.tableDeprecatedAttributes,
+			"tab-index": props.tabIndex,
+			list: props.list,
+			headings: props.list,
+		}).split(" ");
+		addClass(classes);
+
+		return () => {
+			removeClass(classes);
+		};
+	}, [props]);
+
 	return (
 		<>
-			<Global {...props} />
+			<div data-testid="audit" />
 			{props.colorBlindness && <SVGColorBlindnessFilters />}
 		</>
 	);

@@ -6,9 +6,4 @@
  *
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
-import { addons } from "@storybook/addons";
-
-addons.setConfig({
-	panelPosition: "bottom",
-	viewMode: "docs",
-});
+declare module "*.scss";

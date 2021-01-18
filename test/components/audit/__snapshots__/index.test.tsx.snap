@@ -8,6 +8,9 @@ Object {
       <div
         class="layout"
       >
+        <div
+          data-testid="audit"
+        />
         <h2>
           Sample page
         </h2>
@@ -314,6 +317,9 @@ Object {
     <div
       class="layout"
     >
+      <div
+        data-testid="audit"
+      />
       <h2>
         Sample page
       </h2>

@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <a
-        class="sc-bdfBwQ jxcXoZ skip-links__item"
+        class="link skip-links__item"
         href="#content"
       >
         Skip to main content
@@ -15,7 +15,7 @@ Object {
   </body>,
   "container": <div>
     <a
-      class="sc-bdfBwQ jxcXoZ skip-links__item"
+      class="link skip-links__item"
       href="#content"
     >
       Skip to main content
@@ -85,7 +85,7 @@ Object {
         data-testid="skip-links"
       >
         <a
-          class="sc-bdfBwQ jxcXoZ skip-links__item"
+          class="link skip-links__item"
           href="#content"
         >
           Skip to main content
@@ -99,7 +99,7 @@ Object {
       data-testid="skip-links"
     >
       <a
-        class="sc-bdfBwQ jxcXoZ skip-links__item"
+        class="link skip-links__item"
         href="#content"
       >
         Skip to main content
@@ -170,7 +170,7 @@ Object {
         data-testid="skip-links"
       >
         <a
-          class="sc-bdfBwQ jxcXoZ skip-links__item"
+          class="link skip-links__item"
           href="#content"
         >
           Skip to main content
@@ -184,7 +184,7 @@ Object {
       data-testid="skip-links"
     >
       <a
-        class="sc-bdfBwQ jxcXoZ skip-links__item"
+        class="link skip-links__item"
         href="#content"
       >
         Skip to main content
@@ -255,13 +255,13 @@ Object {
         data-testid="skip-links"
       >
         <a
-          class="sc-bdfBwQ jxcXoZ skip-links__item"
+          class="link skip-links__item"
           href="#main-content"
         >
           Skip to Main Content
         </a>
         <a
-          class="sc-bdfBwQ jxcXoZ skip-links__item"
+          class="link skip-links__item"
           href="#sidebar"
         >
           Skip to Side Menu
@@ -275,13 +275,13 @@ Object {
       data-testid="skip-links"
     >
       <a
-        class="sc-bdfBwQ jxcXoZ skip-links__item"
+        class="link skip-links__item"
         href="#main-content"
       >
         Skip to Main Content
       </a>
       <a
-        class="sc-bdfBwQ jxcXoZ skip-links__item"
+        class="link skip-links__item"
         href="#sidebar"
       >
         Skip to Side Menu

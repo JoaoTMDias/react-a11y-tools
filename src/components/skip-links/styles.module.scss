@@ -6,11 +6,10 @@
  *
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
-import styled from "styled-components";
-
-export const Link = styled.a`
+.link {
 	--link-background: #111;
 	--link-color: #fff;
+
 	position: absolute;
 	top: 1rem;
 	left: 2rem;
@@ -29,18 +28,16 @@ export const Link = styled.a`
 	height: 2rem;
 	min-width: 10rem;
 	z-index: 100;
+}
 
-	&:not(:focus) {
-		border: 0;
-		clip: rect(0 0 0 0);
-		height: auto;
-		margin: 0;
-		overflow: hidden;
-		padding: 0;
-		position: absolute !important;
-		width: 1px;
-		white-space: nowrap;
-	}
-`;
-
-export default Link;
+.link:not(:focus) {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: auto;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	white-space: nowrap;
+}

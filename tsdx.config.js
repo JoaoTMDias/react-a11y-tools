@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /*
  * This file is open-source. This means that it can be reproduced in whole
  * or in part, stored in a retrieval system transmitted in any form, or by
@@ -6,18 +7,16 @@
  *
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
-import styled from "styled-components";
+const postcss = require("rollup-plugin-postcss");
 
-const Container = styled.div`
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: auto;
-	margin: 0;
-	overflow: hidden;
-	padding: 0;
-	position: absolute !important;
-	width: 1px;
-	white-space: nowrap;
-`;
-
-export default Container;
+module.exports = {
+	rollup(config, options) {
+		config.plugins.push(
+			postcss({
+				modules: true,
+				use: ["sass"],
+			}),
+		);
+		return config;
+	},
+};

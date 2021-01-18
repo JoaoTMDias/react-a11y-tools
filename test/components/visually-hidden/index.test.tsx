@@ -25,7 +25,6 @@ describe("<VisuallyHidden>", () => {
 
 	beforeEach(() => {
 		props = {
-			as: "div",
 			isFocusable: false,
 		};
 	});
@@ -63,38 +62,9 @@ describe("<VisuallyHidden>", () => {
 		});
 	});
 
-	it("should render the container as a different html element", () => {
-		const customProps = {
-			...props,
-			as: "section",
-		};
-
-		render(
-			<VisuallyHidden as={customProps.as}>
-				<h2>A title</h2>
-				<p>A paragraph</p>
-				<ul>
-					<li>
-						<a href="#1">Link one</a>
-					</li>
-					<li>
-						<a href="#2">Link two</a>
-					</li>
-				</ul>
-			</VisuallyHidden>,
-		);
-
-		expect(screen.getByTestId("visually-hidden-container").tagName).toBe(customProps.as.toUpperCase());
-	});
-
 	it("should be able to receive focus", () => {
-		const customProps = {
-			...props,
-			isFocusable: true,
-		};
-
 		render(
-			<VisuallyHidden isFocusable={customProps.isFocusable}>
+			<VisuallyHidden isFocusable={true}>
 				<h2>A title</h2>
 			</VisuallyHidden>,
 		);
@@ -102,5 +72,17 @@ describe("<VisuallyHidden>", () => {
 		userEvent.tab();
 
 		expect(screen.getByTestId("visually-hidden-container")).toHaveFocus();
+	});
+
+	it("should not be able to receive focus", () => {
+		render(
+			<VisuallyHidden isFocusable={false}>
+				<h2>A title</h2>
+			</VisuallyHidden>,
+		);
+
+		userEvent.tab();
+
+		expect(screen.getByTestId("visually-hidden-container")).not.toHaveAttribute("tabindex");
 	});
 });

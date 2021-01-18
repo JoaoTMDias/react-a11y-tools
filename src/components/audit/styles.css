@@ -1,0 +1,564 @@
+/*
+ * This file is open-source. This means that it can be reproduced in whole
+ * or in part, stored in a retrieval system transmitted in any form, or by
+ * any means electronic with my prior permission as an author and owner
+ * Please refer to the terms of the license agreement in the root of the project
+ *
+ * (c) 2021 joaodias.me, No Rights Reserved.
+ */
+
+.deprecated-elements applet:after,
+.deprecated-elements basefont:after,
+.deprecated-elements center:after,
+.deprecated-elements dir:after,
+.deprecated-elements font:after,
+.deprecated-elements isindex:after,
+.deprecated-elements menu:after,
+.deprecated-elements s:after,
+.deprecated-elements strike:after,
+.deprecated-elements u:after {
+	display: inline-block;
+	position: relative;
+	content: "Deprecated Element";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.deprecated-attributes *[background]::after,
+.deprecated-attributes *[bgcolor]::after,
+.deprecated-attributes *[clear]::after,
+.deprecated-attributes *[color]::after,
+.deprecated-attributes *[compact]::after,
+.deprecated-attributes *[noshade]::after,
+.deprecated-attributes *[nowrap]::after,
+.deprecated-attributes *[size]::after,
+.deprecated-attributes *[start]::after,
+.deprecated-attributes *[bottommargin]::after,
+.deprecated-attributes *[leftmargin]::after,
+.deprecated-attributes *[rightmargin]::after,
+.deprecated-attributes *[topmargin]::after,
+.deprecated-attributes *[marginheight]::after,
+.deprecated-attributes *[marginwidth]::after,
+.deprecated-attributes *[alink]::after,
+.deprecated-attributes *[link]::after,
+.deprecated-attributes *[text]::after,
+.deprecated-attributes *[vlink]::after,
+.deprecated-attributes *[align]::after,
+.deprecated-attributes *[valign]::after,
+.deprecated-attributes *[hspace]::after,
+.deprecated-attributes *[vspace]::after,
+.deprecated-attributes *[height]::after,
+.deprecated-attributes *[width]::after,
+.deprecated-attributes ul[type]::after,
+.deprecated-attributes ol[type]::after,
+.deprecated-attributes li[type]::after {
+	content: "Deprecated attribute";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.images-src {
+	outline: 2px dotted tomato;
+	outline-offset: 2px;
+}
+
+.images-alt img:not([alt]),
+.images-alt area:not([alt]),
+.images-alt *[role="img"]:not([aria-label]),
+.images-alt input[type="image"][alt=""],
+.images-alt input[type="image"]:not([alt]) {
+	outline: 2px dashed tomato;
+	outline-offset: 2px;
+}
+
+.images-alt img:not([alt])::after,
+.images-alt area:not([alt])::after,
+.images-alt input[type="image"][alt=""]::after,
+.images-alt input[type="image"]:not([alt])::after {
+	content: "No alt attribute";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.images-alt *[role="img"]:not([aria-label])::after {
+	content: "No alternative description";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.empty-href a:not([href])::after,
+.empty-href a[href=""]::after,
+.empty-href a[href=" "]::after,
+.empty-href a[href="#"]::after,
+.empty-href a[href*="javascript:"]::after,
+.empty-href a:not([href])[onclick]::after {
+	outline: 2px dotted tomato;
+	content: "Missing valid href attribute";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.fieldset-legend fieldset > :not(legend):first-child::after,
+.fieldset-legend fieldset > legend:not(:first-child)::after {
+	content: "invalid fieldset markup";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.color-blindness-none {
+	filter: "none";
+}
+
+.color-blindness-blur {
+	filter: blur(2px) !important;
+}
+
+.color-blindness-deuteranopia {
+	filter: url("#deuteranopia") !important;
+}
+.color-blindness-deuteranopia::after {
+	content: "deuteranopia";
+	position: fixed;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.color-blindness-deutranomaly {
+	filter: url("#deutranomaly") !important;
+}
+.color-blindness-deutranomaly::after {
+	content: "deutranomaly";
+	position: fixed;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.color-blindness-achromatomaly {
+	filter: url("#achromatomaly") !important;
+}
+.color-blindness-achromatomaly::after {
+	content: "achromatomaly";
+	position: fixed;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.color-blindness-achromatopsia {
+	filter: url("#achromatopsia") !important;
+}
+.color-blindness-achromatopsia::after {
+	content: "achromatopsia";
+	position: fixed;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.color-blindness-protanomaly {
+	filter: url("#protanomaly") !important;
+}
+.color-blindness-protanomaly::after {
+	content: "protanomaly";
+	position: fixed;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.color-blindness-protanopia {
+	filter: url("#protanopia") !important;
+}
+.color-blindness-protanopia::after {
+	content: "protanopia";
+	position: fixed;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.color-blindness-tritanomaly {
+	filter: url("#tritanomaly") !important;
+}
+.color-blindness-tritanomaly::after {
+	content: "tritanomaly";
+	position: fixed;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.color-blindness-tritanopia {
+	filter: url("#tritanopia") !important;
+}
+.color-blindness-tritanopia::after {
+	content: "tritanopia";
+	position: fixed;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.no-mouse *,
+.no-mouse *:hover {
+	cursor: none !important;
+}
+
+.reduce-motion *,
+.reduce-motion *:hover,
+.reduce-motion *:focus {
+	transition: none !important;
+	animation: none !important;
+}
+
+.large-font {
+	font-size: 32px;
+}
+
+html:not([lang]) .i18n-lang,
+html[lang=" "] .i18n-lang,
+html[lang=""] .i18n-lang,
+html:not(:lang(en)) .i18n-lang {
+	outline: 2px dotted tomato;
+	outline-offset: 2px;
+}
+html:not([lang]) .i18n-lang::after,
+html[lang=" "] .i18n-lang::after,
+html[lang=""] .i18n-lang::after,
+html:not(:lang(en)) .i18n-lang::after {
+	content: "Missing 'lang' attribute in element";
+	position: fixed;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.i18n-dir [dir]:not([dir="rtl"]):not([dir="ltr"])::after {
+	content: "dir attribute has invalid value";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.nested-buttons a button,
+.nested-buttons button a {
+	outline: 2px dotted tomato;
+	outline-offset: 2px;
+}
+
+.title iframe:not([title])::after {
+	content: "iframe has no title";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.title title:empty::after {
+	content: "title element is empty";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.table-header th:empty::after {
+	content: "Replace empty TH element with TD";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.table-single-row table > tr:only-child::after,
+.table-single-row table > tbody > tr:only-child::after {
+	content: "Only one TR in this table";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.table-nested th > table::after,
+.table-nested td > table::after,
+.table-nested body > table:first-child::after,
+.table-nested table table::after {
+	content: "Nested table found";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.table-deprecated-attributes table[align]::after,
+.table-deprecated-attributes table[bgcolor]::after,
+.table-deprecated-attributes table[border]::after,
+.table-deprecated-attributes table[cellpadding]::after,
+.table-deprecated-attributes table[cellspacing]::after,
+.table-deprecated-attributes table[width]::after,
+.table-deprecated-attributes td[width]::after,
+.table-deprecated-attributes td[valign]::after {
+	content: "Deprecated markup in table";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.tab-index [tabindex]:not([tabindex="0"]):not([tabindex="-1"]) {
+	outline: 2px dotted tomato;
+}
+.tab-index [tabindex]:not([tabindex="0"]):not([tabindex="-1"])::after {
+	content: "tabindex must be 0 or -1";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.list ol[type]:after,
+.list ul[type]:after {
+	content: "ERROR: Bullet type should be declared in CSS" !important;
+}
+
+.list ol > *:not(li):after,
+.list ul > *:not(li):after {
+	content: "ERROR: List markup invalid" !important;
+}
+
+.headings h1::after {
+	content: "h1";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.headings h2::after {
+	content: "h2";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.headings h3::after {
+	content: "h3";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.headings h4::after {
+	content: "h4";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.headings h5::after {
+	content: "h5";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}
+
+.headings h6::after {
+	content: "h6";
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 2rem;
+}

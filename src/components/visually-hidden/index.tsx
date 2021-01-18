@@ -6,16 +6,11 @@
  *
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
-import React, { FunctionComponent, JSXElementConstructor } from "react";
-import Container from "./styles";
+import classNames from "classnames";
+import React, { FunctionComponent } from "react";
+import styles from "./styles.module.scss";
 
 export interface IVisuallyHiddenProps {
-	/**
-	 * The element type for the container.
-	 * @default 'div'
-	 */
-	as?: string | JSXElementConstructor<any>;
-
 	/** Whether the element should become visible on focus, for example skip links. */
 	isFocusable?: boolean;
 }
@@ -27,16 +22,13 @@ export interface IVisuallyHiddenProps {
  * @param {FunctionComponent<VisuallyHiddenProps>} props
  * @returns {JSX.Element}
  */
-export const VisuallyHidden: FunctionComponent<IVisuallyHiddenProps> = ({
-	children,
-	as = "div",
-	isFocusable = false,
-}) => {
+export const VisuallyHidden: FunctionComponent<IVisuallyHiddenProps> = ({ children, isFocusable }) => {
 	const tabIndex = isFocusable ? 0 : undefined;
+	const classes = classNames(styles["sr-only"], "visually-hidden");
 
 	return (
-		<Container as={as} className="visually-hidden" data-testid="visually-hidden-container" tabIndex={tabIndex}>
+		<div className={classes} data-testid="visually-hidden-container" tabIndex={tabIndex}>
 			{children}
-		</Container>
+		</div>
 	);
 };

@@ -6,9 +6,15 @@
  *
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
-import { addons } from "@storybook/addons";
 
-addons.setConfig({
-	panelPosition: "bottom",
-	viewMode: "docs",
-});
+.sr-only {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: auto;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	white-space: nowrap;
+}
