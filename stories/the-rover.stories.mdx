@@ -1,0 +1,72 @@
+import { Meta, Story, Canvas, Preview, ArgsTable, Subtitle } from "@storybook/addon-docs/blocks";
+import { useRef } from "react";
+import { action } from "@storybook/addon-actions";
+import { RoverProvider, useRover, useFocus } from "../src/components/the-rover";
+
+<Meta title="Components/The Rover" component={RoverProvider} />
+
+export const ToolbarButton = ({ disabled, children, onClick }) => {
+	const id = useRef("3bd4ad7f-298c-4ed7-8065-fdada2fd916d");
+	const ref = useRef(null);
+	const [tabIndex, focused, handleKeyDown, handleClick] = useRover(ref, disabled);
+	useFocus(focused, ref);
+	return (
+		<button
+			ref={ref}
+			id={id.current}
+			onKeyDown={handleKeyDown}
+			onClick={() => {
+				handleClick();
+				onClick();
+			}}
+			tabIndex={tabIndex}
+			disabled={disabled}
+		>
+			{children}
+		</button>
+	);
+};
+
+# The Rover
+
+<Subtitle>Subtitle here</Subtitle>
+
+## Usage
+
+text here
+
+<Canvas>
+	<Story name="Example">
+		{() => (
+			<RoverProvider direction="horizontal">
+				<div>
+					<span>
+						<ToolbarButton disabled={false} onClick={action("Button One clicked")}>
+							Button One
+						</ToolbarButton>
+					</span>
+					<ToolbarButton disabled={false} onClick={action("Button Two clicked")}>
+						Button Two
+					</ToolbarButton>
+					<ToolbarButton disabled={true} onClick={action("Button Three clicked")}>
+						Button Three
+					</ToolbarButton>
+					<span>
+						<span>
+							<ToolbarButton disabled={false} onClick={action("Button Four clicked")}>
+								Button Four
+							</ToolbarButton>
+						</span>
+					</span>
+					<ToolbarButton disabled={false} onClick={action("Button Five clicked")}>
+						Button Five
+					</ToolbarButton>
+				</div>
+			</RoverProvider>
+		)}
+	</Story>
+</Canvas>
+
+### Props
+
+<ArgsTable story="Example" />

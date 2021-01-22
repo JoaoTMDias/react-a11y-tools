@@ -24,3 +24,4 @@ export {
 } from "./components/focus-trap";
 export * from "./components/skip-links";
 export { IVisuallyHiddenProps, VisuallyHidden } from "./components/visually-hidden";
+export { RoverProvider, useRover, useFocus, RoverProviderProps } from "./components/the-rover";
