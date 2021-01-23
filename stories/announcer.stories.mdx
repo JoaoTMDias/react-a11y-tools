@@ -20,6 +20,10 @@ import { RouteAnnouncer } from "../src/components/announcer/route-announcer";
 		padding: 2rem;
 	}
 
+	.inner {
+		padding: 2rem 0;
+	}
+
 	a {
 		color: white;
 		text-decoration: none;
@@ -34,26 +38,46 @@ import { RouteAnnouncer } from "../src/components/announcer/route-announcer";
 	a[aria-current="page"] {
 		text-decoration: underline;
 	}
+
+	.footer {
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		justify-content: space-around;
+		gap: 2rem;
+	}
+
+	.footer__list {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		display: grid;
+		grid-gap: 1rem;
+	}
+
+	.footer__link {
+		border-bottom: 1px solid #fff;
+	}
 `}</style>
 
 export let history = createHistory(window);
 
 export const Home = () => (
-	<div className="page">
+	<div className="page inner">
 		<h1>Welcome</h1>
 		<p>You are on the welcome page</p>
 	</div>
 );
 
 export const Dashboard = () => (
-	<div className="page">
+	<div className="page inner">
 		<h1>Dashboard</h1>
 		<p>You are on the dashboard page</p>
 	</div>
 );
 
 export const Invoice = (props) => (
-	<div className="page">
+	<div className="page inner">
 		<h1>Invoice {props.invoiceId}</h1>
 		<p>You are on the invoice page</p>
 	</div>
@@ -66,17 +90,133 @@ export const DemoWithRouter = () => {
 				return (
 					<div className="page">
 						<RouteAnnouncer pathname={context.location.pathname}>
-							<nav className="nav">
-								<Link to="/">Home</Link>
-								<Link to="/dashboard">Dashboard</Link>
-								<Link to="/invoices/123">Invoice 123</Link>
-								<Link to="/invoices/abc">Invoice ABC</Link>
-							</nav>
-							<Router basepath="/">
-								<Home path="/" />
-								<Dashboard path="/dashboard" />
-								<Invoice path="/invoices/:invoiceId" />
-							</Router>
+							<header>
+								<nav className="nav">
+									<Link to="/">Home</Link>
+									<Link to="/dashboard">Dashboard</Link>
+									<Link to="/invoices/123">Invoice 123</Link>
+									<Link to="/invoices/abc">Invoice ABC</Link>
+								</nav>
+							</header>
+							<main>
+								<Router>
+									<Home path="/" />
+									<Dashboard path="/dashboard" />
+									<Invoice path="/invoices/:invoiceId" />
+								</Router>
+							</main>
+							<footer class="footer">
+								<div class="footer__column">
+									<h5>Features</h5>
+									<ul class="footer__list">
+										<li>
+											<a class="footer__link" href="#">
+												Cool stuff
+											</a>
+										</li>
+										<li>
+											<a class="footer__link" href="#">
+												Random feature
+											</a>
+										</li>
+										<li>
+											<a class="footer__link" href="#">
+												Team feature
+											</a>
+										</li>
+										<li>
+											<a class="footer__link" href="#">
+												Stuff for developers
+											</a>
+										</li>
+										<li>
+											<a class="footer__link" href="#">
+												Another one
+											</a>
+										</li>
+										<li>
+											<a class="footer__link" href="#">
+												Last time
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div class="footer__column">
+									<h5>Resources</h5>
+									<ul class="footer__list">
+										<li>
+											<a class="footer__link" href="#">
+												Resource name
+											</a>
+										</li>
+										<li>
+											<a class="footer__link" href="#">
+												Resource
+											</a>
+										</li>
+										<li>
+											<a class="footer__link" href="#">
+												Another resource
+											</a>
+										</li>
+										<li>
+											<a class="footer__link" href="#">
+												Final resource
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div class="footer__column">
+									<h5>Resources</h5>
+									<ul class="footer__list">
+										<li>
+											<a class="footer__link" href="#">
+												Business
+											</a>
+										</li>
+										<li>
+											<a class="footer__link" href="#">
+												Education
+											</a>
+										</li>
+										<li>
+											<a class="footer__link" href="#">
+												Government
+											</a>
+										</li>
+										<li>
+											<a class="footer__link" href="#">
+												Gaming
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div class="footer__column">
+									<h5>About</h5>
+									<ul class="footer__list">
+										<li>
+											<a class="footer__link" href="#">
+												Team
+											</a>
+										</li>
+										<li>
+											<a class="footer__link" href="#">
+												Locations
+											</a>
+										</li>
+										<li>
+											<a class="footer__link" href="#">
+												Privacy
+											</a>
+										</li>
+										<li>
+											<a class="footer__link" href="#">
+												Terms
+											</a>
+										</li>
+									</ul>
+								</div>
+							</footer>
 						</RouteAnnouncer>
 					</div>
 				);
