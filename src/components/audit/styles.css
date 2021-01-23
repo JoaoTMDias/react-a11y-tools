@@ -1,12 +1,3 @@
-/*
- * This file is open-source. This means that it can be reproduced in whole
- * or in part, stored in a retrieval system transmitted in any form, or by
- * any means electronic with my prior permission as an author and owner
- * Please refer to the terms of the license agreement in the root of the project
- *
- * (c) 2021 joaodias.me, No Rights Reserved.
- */
-
 .deprecated-elements applet:after,
 .deprecated-elements basefont:after,
 .deprecated-elements center:after,
@@ -18,18 +9,56 @@
 .deprecated-elements strike:after,
 .deprecated-elements u:after {
 	display: inline-block;
-	position: relative;
-	content: "Deprecated Element";
+	content: "⚠ Deprecated Element";
 	position: relative;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
+}
+
+.deprecated-elements applet,
+.deprecated-elements basefont,
+.deprecated-elements center,
+.deprecated-elements dir,
+.deprecated-elements font,
+.deprecated-elements isindex,
+.deprecated-elements menu,
+.deprecated-elements s,
+.deprecated-elements strike,
+.deprecated-elements u,
+.deprecated-attributes *[background],
+.deprecated-attributes *[bgcolor],
+.deprecated-attributes *[clear],
+.deprecated-attributes *[color],
+.deprecated-attributes *[compact],
+.deprecated-attributes *[noshade],
+.deprecated-attributes *[nowrap],
+.deprecated-attributes *[size],
+.deprecated-attributes *[start],
+.deprecated-attributes *[bottommargin],
+.deprecated-attributes *[leftmargin],
+.deprecated-attributes *[rightmargin],
+.deprecated-attributes *[topmargin],
+.deprecated-attributes *[marginheight],
+.deprecated-attributes *[marginwidth],
+.deprecated-attributes *[alink],
+.deprecated-attributes *[link],
+.deprecated-attributes *[text],
+.deprecated-attributes *[vlink],
+.deprecated-attributes *[align],
+.deprecated-attributes *[valign],
+.deprecated-attributes *[hspace],
+.deprecated-attributes *[vspace],
+.deprecated-attributes ul[type],
+.deprecated-attributes ol[type],
+.deprecated-attributes li[type] {
+	outline: 2px solid #552020;
 }
 
 .deprecated-attributes *[background]::after,
@@ -60,21 +89,21 @@
 .deprecated-attributes ul[type]::after,
 .deprecated-attributes ol[type]::after,
 .deprecated-attributes li[type]::after {
-	content: "Deprecated attribute";
+	content: "⚠ Deprecated attribute";
 	position: relative;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .images-src {
-	outline: 2px dotted tomato;
+	outline: 2px solid #552020;
 	outline-offset: 2px;
 }
 
@@ -83,7 +112,7 @@
 .images-alt *[role="img"]:not([aria-label]),
 .images-alt input[type="image"][alt=""],
 .images-alt input[type="image"]:not([alt]) {
-	outline: 2px dashed tomato;
+	outline: 2px dashed #552020;
 	outline-offset: 2px;
 }
 
@@ -91,31 +120,31 @@
 .images-alt area:not([alt])::after,
 .images-alt input[type="image"][alt=""]::after,
 .images-alt input[type="image"]:not([alt])::after {
-	content: "No alt attribute";
+	content: "⚠ No alt attribute";
 	position: relative;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .images-alt *[role="img"]:not([aria-label])::after {
-	content: "No alternative description";
+	content: "⚠ No alternative description";
 	position: relative;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .empty-href a:not([href])::after,
@@ -124,33 +153,33 @@
 .empty-href a[href="#"]::after,
 .empty-href a[href*="javascript:"]::after,
 .empty-href a:not([href])[onclick]::after {
-	outline: 2px dotted tomato;
-	content: "Missing valid href attribute";
+	outline: 2px solid #552020;
+	content: "⚠ Invalid href";
 	position: relative;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .fieldset-legend fieldset > :not(legend):first-child::after,
 .fieldset-legend fieldset > legend:not(:first-child)::after {
-	content: "invalid fieldset markup";
+	content: "⚠ Invalid markup";
 	position: relative;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .color-blindness-none {
@@ -165,136 +194,136 @@
 	filter: url("#deuteranopia") !important;
 }
 .color-blindness-deuteranopia::after {
-	content: "deuteranopia";
+	content: "👁 deuteranopia";
 	position: fixed;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .color-blindness-deutranomaly {
 	filter: url("#deutranomaly") !important;
 }
 .color-blindness-deutranomaly::after {
-	content: "deutranomaly";
+	content: "👁 deutranomaly";
 	position: fixed;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .color-blindness-achromatomaly {
 	filter: url("#achromatomaly") !important;
 }
 .color-blindness-achromatomaly::after {
-	content: "achromatomaly";
+	content: "👁 achromatomaly";
 	position: fixed;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .color-blindness-achromatopsia {
 	filter: url("#achromatopsia") !important;
 }
 .color-blindness-achromatopsia::after {
-	content: "achromatopsia";
+	content: "👁 achromatopsia";
 	position: fixed;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .color-blindness-protanomaly {
 	filter: url("#protanomaly") !important;
 }
 .color-blindness-protanomaly::after {
-	content: "protanomaly";
+	content: "👁 protanomaly";
 	position: fixed;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .color-blindness-protanopia {
 	filter: url("#protanopia") !important;
 }
 .color-blindness-protanopia::after {
-	content: "protanopia";
+	content: "👁 protanopia";
 	position: fixed;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .color-blindness-tritanomaly {
 	filter: url("#tritanomaly") !important;
 }
 .color-blindness-tritanomaly::after {
-	content: "tritanomaly";
+	content: "👁 tritanomaly";
 	position: fixed;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .color-blindness-tritanopia {
 	filter: url("#tritanopia") !important;
 }
 .color-blindness-tritanopia::after {
-	content: "tritanopia";
+	content: "👁 tritanopia";
 	position: fixed;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .no-mouse *,
@@ -317,118 +346,118 @@ html:not([lang]) .i18n-lang,
 html[lang=" "] .i18n-lang,
 html[lang=""] .i18n-lang,
 html:not(:lang(en)) .i18n-lang {
-	outline: 2px dotted tomato;
+	outline: 2px solid #552020;
 	outline-offset: 2px;
 }
 html:not([lang]) .i18n-lang::after,
 html[lang=" "] .i18n-lang::after,
 html[lang=""] .i18n-lang::after,
 html:not(:lang(en)) .i18n-lang::after {
-	content: "Missing 'lang' attribute in element";
+	content: "⚠ Missing 'lang'";
 	position: fixed;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .i18n-dir [dir]:not([dir="rtl"]):not([dir="ltr"])::after {
-	content: "dir attribute has invalid value";
+	content: "⚠ invalid dir";
 	position: relative;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .nested-buttons a button,
 .nested-buttons button a {
-	outline: 2px dotted tomato;
+	outline: 2px solid #552020;
 	outline-offset: 2px;
 }
 
 .title iframe:not([title])::after {
-	content: "iframe has no title";
+	content: "⚠ iframe has no title";
 	position: relative;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .title title:empty::after {
-	content: "title element is empty";
+	content: "⚠ title element is empty";
 	position: relative;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .table-header th:empty::after {
-	content: "Replace empty TH element with TD";
+	content: "⚠ Replace empty TH element with TD";
 	position: relative;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .table-single-row table > tr:only-child::after,
 .table-single-row table > tbody > tr:only-child::after {
-	content: "Only one TR in this table";
+	content: "⚠ Only one TR in this table";
 	position: relative;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .table-nested th > table::after,
 .table-nested td > table::after,
 .table-nested body > table:first-child::after,
 .table-nested table table::after {
-	content: "Nested table found";
+	content: "⚠ Nested table found";
 	position: relative;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .table-deprecated-attributes table[align]::after,
@@ -439,126 +468,85 @@ html:not(:lang(en)) .i18n-lang::after {
 .table-deprecated-attributes table[width]::after,
 .table-deprecated-attributes td[width]::after,
 .table-deprecated-attributes td[valign]::after {
-	content: "Deprecated markup in table";
+	content: "⚠ Deprecated markup in table";
 	position: relative;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .tab-index [tabindex]:not([tabindex="0"]):not([tabindex="-1"]) {
-	outline: 2px dotted tomato;
+	outline: 2px solid #552020;
 }
 .tab-index [tabindex]:not([tabindex="0"]):not([tabindex="-1"])::after {
-	content: "tabindex must be 0 or -1";
+	content: "⚠ tabindex must be 0 or -1";
 	position: relative;
 	top: 0;
 	left: 0;
 	letter-spacing: 0.25px;
 	padding: 4px 8px;
-	background: black;
-	color: white;
+	background: #552020;
+	color: #fde3a7;
 	font-size: 12px;
 	font-family: monospace;
-	border-radius: 2rem;
+	border-radius: 0.25rem;
 }
 
 .list ol[type]:after,
 .list ul[type]:after {
-	content: "ERROR: Bullet type should be declared in CSS" !important;
+	content: "⚠ ERROR: Bullet type should be declared in CSS" !important;
 }
 
 .list ol > *:not(li):after,
 .list ul > *:not(li):after {
-	content: "ERROR: List markup invalid" !important;
+	content: "⚠ ERROR: List markup Invalid" !important;
+}
+
+.headings h1::after,
+.headings h2::after,
+.headings h3::after,
+.headings h4::after,
+.headings h5::after,
+.headings h6::after {
+	position: relative;
+	top: 0;
+	left: 0;
+	letter-spacing: 0.25px;
+	padding: 4px 8px;
+	background: white;
+	color: #8b0000;
+	border: 1px dashed #8b0000;
+	font-size: 12px;
+	font-family: monospace;
+	border-radius: 0.25rem;
 }
 
 .headings h1::after {
-	content: "h1";
-	position: relative;
-	top: 0;
-	left: 0;
-	letter-spacing: 0.25px;
-	padding: 4px 8px;
-	background: black;
-	color: white;
-	font-size: 12px;
-	font-family: monospace;
-	border-radius: 2rem;
+	content: "📚 heading-level-1";
 }
 
 .headings h2::after {
-	content: "h2";
-	position: relative;
-	top: 0;
-	left: 0;
-	letter-spacing: 0.25px;
-	padding: 4px 8px;
-	background: black;
-	color: white;
-	font-size: 12px;
-	font-family: monospace;
-	border-radius: 2rem;
+	content: "📚 heading-level-2";
 }
 
 .headings h3::after {
-	content: "h3";
-	position: relative;
-	top: 0;
-	left: 0;
-	letter-spacing: 0.25px;
-	padding: 4px 8px;
-	background: black;
-	color: white;
-	font-size: 12px;
-	font-family: monospace;
-	border-radius: 2rem;
+	content: "📚 heading-level-3";
 }
 
 .headings h4::after {
-	content: "h4";
-	position: relative;
-	top: 0;
-	left: 0;
-	letter-spacing: 0.25px;
-	padding: 4px 8px;
-	background: black;
-	color: white;
-	font-size: 12px;
-	font-family: monospace;
-	border-radius: 2rem;
+	content: "📚 heading-level-4";
 }
 
 .headings h5::after {
-	content: "h5";
-	position: relative;
-	top: 0;
-	left: 0;
-	letter-spacing: 0.25px;
-	padding: 4px 8px;
-	background: black;
-	color: white;
-	font-size: 12px;
-	font-family: monospace;
-	border-radius: 2rem;
+	content: "📚 heading-level-5";
 }
 
 .headings h6::after {
-	content: "h6";
-	position: relative;
-	top: 0;
-	left: 0;
-	letter-spacing: 0.25px;
-	padding: 4px 8px;
-	background: black;
-	color: white;
-	font-size: 12px;
-	font-family: monospace;
-	border-radius: 2rem;
+	content: "📚 heading-level-6";
 }
