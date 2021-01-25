@@ -6,12 +6,20 @@
  *
  * (c) 2021 joaodias.me
  */
-export interface RoverProviderProps {
-	children: React.ReactNode;
-	direction?: KeyDirection;
-}
+export type TKeyDirection = "horizontal" | "vertical" | "both";
 
-export type KeyDirection = "horizontal" | "vertical" | "both";
+export interface IRoverProviderProps {
+	/**
+	 * Your content goes here
+	 */
+	children: React.ReactNode;
+
+	/**
+	 * Depending on the direction ("vertical", "horizontal" or "both") it checks for the usage
+	 * of the `ArrowLeft`, `ArrowRight`, `ArrowUp` and `ArrowDown`
+	 */
+	direction?: TKeyDirection;
+}
 
 export type ActionTypes =
 	| "REGISTER"
@@ -23,17 +31,17 @@ export type ActionTypes =
 	| "CLICKED"
 	| "CHANGE_DIRECTION";
 
-export type RovingState = {
-	direction: KeyDirection;
-	selectedId: string | null;
-	lastActionOrigin: "mouse" | "keyboard" | null;
-	tabStops: Array<TabStop>;
-};
-
 export type TabStop = {
 	readonly id: string;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	readonly domElementRef: React.RefObject<any>;
+};
+
+export type RovingState = {
+	direction: TKeyDirection;
+	selectedId: string | null;
+	lastActionOrigin: "mouse" | "keyboard" | null;
+	tabStops: Array<TabStop>;
 };
 
 interface IRovingActionPayloadID {
@@ -41,7 +49,7 @@ interface IRovingActionPayloadID {
 }
 
 interface IRovingActionPayloadDirection {
-	direction: KeyDirection;
+	direction: TKeyDirection;
 }
 
 interface IRovingActionWithPayload<Action, Payload> {

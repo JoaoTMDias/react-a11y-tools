@@ -7,8 +7,8 @@
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
 
-import { focusWithoutScrolling } from "../../helpers/focus-without-scrolling";
-import { runAfterTransition } from "../../helpers/run-after-transition";
+import { focusWithoutScrolling } from "../../../helpers/focus-without-scrolling";
+import { runAfterTransition } from "../../../helpers/run-after-transition";
 
 /**
  * A utility function that focuses an element while avoiding undesired side effects such

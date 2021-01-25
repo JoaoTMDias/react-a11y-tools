@@ -4,7 +4,7 @@ import { Meta, Story, Canvas, Preview, ArgsTable, Subtitle } from "@storybook/ad
 import { options } from "./mocks/skip-links.mocks";
 import { SkipLinks } from "../src/components/skip-links/index";
 
-<Meta title="Components" component={SkipLinks} parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+<Meta title="Components/Skip Links" component={SkipLinks} />
 
 <style>{`
 	.layout {
@@ -45,45 +45,43 @@ import { SkipLinks } from "../src/components/skip-links/index";
 
 export const Template = (args) => {
 	return (
-		<div>
+		<div className="layout">
 			<SkipLinks {...args} />
-			<div className="layout">
-				<header className="header">
-					<h1>Demo Page</h1>
-					<nav id="navigation-menu" className="menu" tabIndex={-1}>
-						<ul>
-							<li>
-								<a href="#website">Link 1</a>
-							</li>
-							<li>
-								<a href="#documentation">Link 2</a>
-							</li>
-							<li>
-								<a href="#gitlab">Link 3</a>
-							</li>
-						</ul>
-					</nav>
-				</header>
-				<main className="main" tabIndex={-1}>
-					<h2 id="content">This is the content</h2>
-					<p>
-						Lorem ipsum dolor sit amet, sed at alia posse minimum. Has adhuc liberavisse ne, movet laboramus
-						consequuntur vis in. Et has causae feugait atomorum, ad vel falli invenire. Rebum possit partiendo vix ad,
-						ei vix tota nullam vocent.
-					</p>
-					<a
-						id="website"
-						href="https://github.com/JoaoTMDias/react-accessible-tools"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Github Website
-					</a>
-					<a id="documentation" href="http://www.npmjs.org/" target="_blank" rel="noopener noreferrer">
-						NPM.js
-					</a>
-				</main>
-			</div>
+			<header className="header">
+				<h1>Demo Page</h1>
+				<nav id="navigation-menu" className="menu" tabIndex={-1}>
+					<ul>
+						<li>
+							<a href="#website">Link 1</a>
+						</li>
+						<li>
+							<a href="#documentation">Link 2</a>
+						</li>
+						<li>
+							<a href="#gitlab">Link 3</a>
+						</li>
+					</ul>
+				</nav>
+			</header>
+			<main className="main" tabIndex={-1}>
+				<h2 id="content">This is the content</h2>
+				<p>
+					Lorem ipsum dolor sit amet, sed at alia posse minimum. Has adhuc liberavisse ne, movet laboramus consequuntur
+					vis in. Et has causae feugait atomorum, ad vel falli invenire. Rebum possit partiendo vix ad, ei vix tota
+					nullam vocent.
+				</p>
+				<a
+					id="website"
+					href="https://github.com/JoaoTMDias/react-accessible-tools"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Github Website
+				</a>
+				<a id="documentation" href="http://www.npmjs.org/" target="_blank" rel="noopener noreferrer">
+					NPM.js
+				</a>
+			</main>
 		</div>
 	);
 };

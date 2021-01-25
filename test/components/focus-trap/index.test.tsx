@@ -12,7 +12,8 @@ import { act, fireEvent, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import ReactDOM from "react-dom";
-import { FocusTrap, useFocusManager } from "../../../src/components/focus-trap/index";
+import { FocusTrap } from "../../../src/components/focus-trap/index";
+import { useFocusManager } from "../../../src/components/focus-trap/use-focus-manager";
 
 describe("FocusTrap", () => {
 	beforeEach(() => {

@@ -1,20 +1,12 @@
-/*
+/**
  * This file is open-source. This means that it can be reproduced in whole
  * or in part, stored in a retrieval system transmitted in any form, or by
  * any means electronic with my prior permission as an author and owner
  * Please refer to the terms of the license agreement in the root of the project
  *
- * (c) 2021 joaodias.me, No Rights Reserved.
+ * (c) 2021 joaodias.me
  */
+import { createContext } from "react";
+import { IFocusManager } from "./index.d";
 
-.sr-only {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: auto;
-	margin: 0;
-	overflow: hidden;
-	padding: 0;
-	position: absolute !important;
-	width: 1px;
-	white-space: nowrap;
-}
+export const FocusContext = createContext<IFocusManager | null>(null);

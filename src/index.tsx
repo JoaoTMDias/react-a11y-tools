@@ -15,13 +15,8 @@ export {
 	RouteAnnouncer,
 } from "./components/announcer/route-announcer";
 export * from "./components/audit";
-export {
-	FocusTrap,
-	IFocusManager,
-	IFocusManagerOptions,
-	IFocusTrapProps,
-	useFocusManager,
-} from "./components/focus-trap";
+export { FocusTrap } from "./components/focus-trap";
+export { IFocusManager, IFocusManagerOptions, IFocusTrapProps } from "./components/focus-trap/index.d";
+export { useFocusManager } from "./components/focus-trap/use-focus-manager";
 export * from "./components/skip-links";
-export { IVisuallyHiddenProps, VisuallyHidden } from "./components/visually-hidden";
-export { RoverProvider, useRover, useFocus, RoverProviderProps } from "./components/the-rover";
+export { RoverProvider, useRover, useFocus, IRoverProviderProps } from "./components/the-rover";

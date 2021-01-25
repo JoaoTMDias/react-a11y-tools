@@ -8,61 +8,15 @@
  *
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
-import React, { ReactNode, RefObject, useContext, useEffect, useRef } from "react";
+import React, { FunctionComponent, RefObject, useEffect, useRef } from "react";
 import { useSafeLayoutEffect } from "../../hooks/index";
-import { focusSafely } from "./focus-safely";
-
-export interface IFocusTrapProps {
-	/** The contents of the focus scope. */
-	children: ReactNode;
-
-	/**
-	 * Whether to contain focus inside the scope, so users cannot
-	 * move focus outside, for example in a modal dialog.
-	 */
-	contain?: boolean;
-
-	/**
-	 * Whether to restore focus back to the element that was focused
-	 * when the focus scope mounted, after the focus scope unmounts.
-	 */
-	restoreFocus?: boolean;
-
-	/** Whether to auto focus the first focusable element in the focus scope on mount. */
-	autoFocus?: boolean;
-}
-
-export interface IFocusManagerOptions {
-	/** The element to start searching from. The currently focused element by default. */
-	from?: HTMLElement;
-	/** Whether to only include tabbable elements, or all focusable elements. */
-	tabbable?: boolean;
-	/** Whether focus should wrap around when it reaches the end of the scope. */
-	wrap?: boolean;
-}
-
-export interface IFocusManager {
-	/** Moves focus to the next focusable or tabbable element in the focus scope. */
-	focusNext(opts?: IFocusManagerOptions): HTMLElement | undefined;
-	/** Moves focus to the previous focusable or tabbable element in the focus scope. */
-	focusPrevious(opts?: IFocusManagerOptions): HTMLElement | undefined;
-}
-
-export interface IUseRestoreFocus {
-	scopeRef: RefObject<HTMLElement[]>;
-	restoreFocus?: boolean;
-	contain?: boolean;
-}
-
-const FocusContext = React.createContext<IFocusManager | null>(null);
+import { IFocusManager, IFocusManagerOptions, IFocusTrapProps, IUseRestoreFocus } from "./index.d";
+import { focusSafely } from "./helpers/focus-safely";
+import { isElementInAnyScope, isElementInScope } from "./helpers/element-in-scope";
+import { FocusContext } from "./context";
 
 let activeScope: RefObject<HTMLElement[]> | null = null;
 const scopes: Set<RefObject<HTMLElement[]>> = new Set();
-
-// This is a hacky DOM-based implementation of a FocusTrap until this RFC lands in React:
-// https://github.com/reactjs/rfcs/pull/109
-// For now, it relies on the DOM tree order rather than the React tree order, and is probably
-// less optimized for performance.
 
 /**
  * A FocusTrap manages focus for its descendants. It supports containing focus inside
@@ -70,72 +24,67 @@ const scopes: Set<RefObject<HTMLElement[]>> = new Set();
  * focusing children on mount. It also acts as a container for a programmatic focus
  * management interface that can be used to move focus forward and back in response
  * to user events.
+ *
+ * @export
+ * @param {FunctionComponent<IFocusTrapProps>} props
+ * @returns {JSX.Element}
  */
-export function FocusTrap({ children, contain, restoreFocus, autoFocus }: IFocusTrapProps): JSX.Element {
-	const startRef = useRef<HTMLSpanElement>(null);
-	const endRef = useRef<HTMLSpanElement>(null);
-	const scopeRef = useRef<HTMLElement[]>([]);
+export const FocusTrap: FunctionComponent<IFocusTrapProps> = ({
+	children,
+	contain = true,
+	restoreFocus = true,
+	autoFocus = true,
+}): JSX.Element => {
+	const initial = useRef<HTMLSpanElement>(null);
+	const final = useRef<HTMLSpanElement>(null);
+	const items = useRef<HTMLElement[]>([]);
 
 	useSafeLayoutEffect(() => {
 		// Find all rendered nodes between the sentinels and add them to the scope.
-		let node = startRef?.current?.nextSibling;
+		let node = initial?.current?.nextSibling;
 		const nodes = [];
-		while (node && node !== endRef.current) {
+		while (node && node !== final.current) {
 			nodes.push(node);
 			node = node.nextSibling;
 		}
 
-		scopeRef.current = nodes as HTMLElement[];
-		scopes.add(scopeRef);
+		items.current = nodes as HTMLElement[];
+		scopes.add(items);
 		return () => {
-			scopes.delete(scopeRef);
+			scopes.delete(items);
 		};
 	}, [children]);
 
-	useFocusContainment(scopeRef, contain);
+	useFocusContainment(items, contain);
 	useRestoreFocus({
-		scopeRef,
+		items,
 		restoreFocus,
 		contain,
 	});
-	useAutoFocus(scopeRef, autoFocus);
+	useAutoFocus(items, autoFocus);
 
-	const focusManager = createFocusManager(scopeRef);
+	const value = createFocusManager(items);
 
 	return (
-		<FocusContext.Provider value={focusManager}>
-			<span hidden ref={startRef} />
+		<FocusContext.Provider value={value}>
+			<span hidden ref={initial} />
 			{children}
-			<span hidden ref={endRef} />
+			<span hidden ref={final} />
 		</FocusContext.Provider>
 	);
-}
-
-/**
- * Returns a FocusManager interface for the parent FocusTrap.
- * A FocusManager can be used to programmatically move focus within
- * a FocusTrap, e.g. in response to user events like keyboard navigation.
- *
- * @export
- * @returns {IFocusManager | null}
- */
-export function useFocusManager(): IFocusManager | null {
-	const ctx = useContext(FocusContext);
-
-	return ctx;
-}
+};
 
 /**
  *
  *
- * @param {React.RefObject<HTMLElement[]>} scopeRef
+ * @param {React.RefObject<HTMLElement[]>} items
  * @returns {IFocusManager}
  */
-function createFocusManager(scopeRef: React.RefObject<HTMLElement[]>): IFocusManager {
+function createFocusManager(items: React.RefObject<HTMLElement[]>): IFocusManager {
 	return {
 		focusNext(opts: IFocusManagerOptions = {}): HTMLElement | undefined {
 			const node = opts.from || document.activeElement;
-			const focusable = getFocusableElementsInScope(scopeRef.current, opts);
+			const focusable = getFocusableElementsInScope(items.current, opts);
 			let nextNode = focusable.find(
 				(n) =>
 					!!(
@@ -156,7 +105,7 @@ function createFocusManager(scopeRef: React.RefObject<HTMLElement[]>): IFocusMan
 
 		focusPrevious(opts: IFocusManagerOptions = {}): HTMLElement | undefined {
 			const node = opts.from || document.activeElement;
-			const focusable = getFocusableElementsInScope(scopeRef.current, opts).reverse();
+			const focusable = getFocusableElementsInScope(items.current, opts).reverse();
 			let previousNode = focusable.find(
 				(n) =>
 					!!(
@@ -177,7 +126,7 @@ function createFocusManager(scopeRef: React.RefObject<HTMLElement[]>): IFocusMan
 	};
 }
 
-const focusableElements = [
+const FOCUSABLE_HTML_ELEMENTS = [
 	"input:not([disabled]):not([type=hidden])",
 	"select:not([disabled])",
 	"textarea:not([disabled])",
@@ -193,11 +142,17 @@ const focusableElements = [
 	"[contenteditable]",
 ];
 
-const FOCUSABLE_ELEMENT_SELECTOR = focusableElements.join(",") + ",[tabindex]";
+const FOCUSABLE_ELEMENT_SELECTOR = FOCUSABLE_HTML_ELEMENTS.join(",") + ",[tabindex]";
+FOCUSABLE_HTML_ELEMENTS.push('[tabindex]:not([tabindex="-1"])');
+const TABBABLE_ELEMENT_SELECTOR = FOCUSABLE_HTML_ELEMENTS.join(':not([tabindex="-1"]),');
 
-focusableElements.push('[tabindex]:not([tabindex="-1"])');
-const TABBABLE_ELEMENT_SELECTOR = focusableElements.join(':not([tabindex="-1"]),');
-
+/**
+ * Returns an array of HTML Elements that can receive focus within the scope
+ *
+ * @param {(HTMLElement[] | null)} scope
+ * @param {IFocusManagerOptions} opts
+ * @returns {HTMLElement[]}
+ */
 function getFocusableElementsInScope(scope: HTMLElement[] | null, opts: IFocusManagerOptions): HTMLElement[] {
 	const res: HTMLElement[] = [];
 	const selector = opts.tabbable ? TABBABLE_ELEMENT_SELECTOR : FOCUSABLE_ELEMENT_SELECTOR;
@@ -213,21 +168,22 @@ function getFocusableElementsInScope(scope: HTMLElement[] | null, opts: IFocusMa
 			res.push(...selectors);
 		}
 	}
+
 	return res;
 }
 
 /**
  *
  *
- * @param {RefObject<HTMLElement[]>} scopeRef
+ * @param {RefObject<HTMLElement[]>} items
  * @param {boolean} [contain]
  */
-function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain?: boolean): void {
+function useFocusContainment(items: RefObject<HTMLElement[]>, contain?: boolean): void {
 	const focusedNode = useRef<HTMLElement>();
 
 	const raf = useRef<number | null>(null);
 	useEffect(() => {
-		const scope = scopeRef.current;
+		const scope = items.current;
 		if (!contain) {
 			return;
 		}
@@ -272,10 +228,10 @@ function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain?: boole
 		/**
 		 * If a focus event occurs outside the active scope (e.g. user tabs from browser location bar),
 		 * restore focus to the previously focused node or the first tabbable element in the active scope.
-		 * @param {any} ev
+		 * @param {any} event
 		 */
-		const onFocus = (ev: any) => {
-			const isInAnyScope = isElementInAnyScope(ev.target, scopes);
+		const onFocus = (event: any) => {
+			const isInAnyScope = isElementInAnyScope(event.target, scopes);
 
 			if (!isInAnyScope) {
 				if (focusedNode.current) {
@@ -284,8 +240,8 @@ function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain?: boole
 					focusFirstInScope(activeScope.current);
 				}
 			} else {
-				activeScope = scopeRef;
-				focusedNode.current = ev.target;
+				activeScope = items;
+				focusedNode.current = event.target;
 			}
 		};
 
@@ -299,7 +255,7 @@ function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain?: boole
 				const isInAnyScope = isElementInAnyScope(document.activeElement, scopes);
 
 				if (!isInAnyScope) {
-					activeScope = scopeRef;
+					activeScope = items;
 					focusedNode.current = event.target;
 					focusedNode?.current?.focus();
 				}
@@ -317,7 +273,7 @@ function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain?: boole
 			scope?.forEach((element) => element.removeEventListener("focusin", onFocus, false));
 			scope?.forEach((element) => element.removeEventListener("focusout", onBlur, false));
 		};
-	}, [scopeRef, contain]);
+	}, [items, contain]);
 
 	// eslint-disable-next-line arrow-body-style
 	useEffect(() => {
@@ -327,33 +283,6 @@ function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain?: boole
 			}
 		};
 	}, [raf]);
-}
-
-/**
- *
- *
- * @param {(Element | null)} element
- * @param {Set<RefObject<HTMLElement[]>>} scopes
- * @returns {boolean}
- */
-function isElementInAnyScope(element: Element | null, scopes: Set<RefObject<HTMLElement[]>>) {
-	for (const scope of scopes.values()) {
-		if (isElementInScope(element, scope.current)) {
-			return true;
-		}
-	}
-	return false;
-}
-
-/**
- *
- *
- * @param {(Element | null)} element
- * @param {(HTMLElement[] | null)} scope
- * @returns {boolean}
- */
-function isElementInScope(element: Element | null, scope: HTMLElement[] | null) {
-	return scope?.some((node) => node.contains(element));
 }
 
 /**
@@ -379,6 +308,8 @@ function focusElement(element: HTMLElement | null, scroll = false) {
 }
 
 /**
+ * Sets the focus on the first element on the scope.
+ *
  * @param {(HTMLElement[] | null)} scope
  */
 function focusFirstInScope(scope: HTMLElement[] | null) {
@@ -387,36 +318,36 @@ function focusFirstInScope(scope: HTMLElement[] | null) {
 }
 
 /**
- * @param {RefObject<HTMLElement[]>} scopeRef
+ * @param {RefObject<HTMLElement[]>} items
  * @param {boolean} [autoFocus]
  */
-function useAutoFocus(scopeRef: RefObject<HTMLElement[]>, autoFocus?: boolean) {
+function useAutoFocus(items: RefObject<HTMLElement[]>, autoFocus?: boolean) {
 	useEffect(() => {
 		if (autoFocus) {
-			activeScope = scopeRef;
+			activeScope = items;
 			if (!isElementInScope(document.activeElement, activeScope.current)) {
-				focusFirstInScope(scopeRef.current);
+				focusFirstInScope(items.current);
 			}
 		}
-	}, [scopeRef, autoFocus]);
+	}, [items, autoFocus]);
 }
 
 /**
- *
+ * Restores focus onto the HTML element that was used before initiating the `FocusTrap`
  *
  * @param {IUseRestoreFocus} props
  */
-function useRestoreFocus({ scopeRef, restoreFocus, contain }: IUseRestoreFocus): void {
+function useRestoreFocus({ items, restoreFocus, contain }: IUseRestoreFocus): void {
 	useSafeLayoutEffect(() => {
-		const scope = scopeRef.current;
+		const scope = items.current;
 		const nodeToRestore = document.activeElement as HTMLElement;
 
 		// Handle the Tab key so that tabbing out of the scope goes to the next element
 		// after the node that had focus when the scope mounted. This is important when
 		// using portals for overlays, so that focus goes to the expected element when
 		// tabbing out of the overlay.
-		const onKeyDown = (e: KeyboardEvent) => {
-			if (e.key !== "Tab" || e.altKey || e.ctrlKey || e.metaKey) {
+		const onKeyDown = (event: KeyboardEvent) => {
+			if (event.key !== "Tab" || event.altKey || event.ctrlKey || event.metaKey) {
 				return;
 			}
 
@@ -430,7 +361,7 @@ function useRestoreFocus({ scopeRef, restoreFocus, contain }: IUseRestoreFocus):
 
 			// Find the next tabbable element after the currently focused element
 			walker.currentNode = focusedElement;
-			let nextElement = (e.shiftKey ? walker.previousNode() : walker.nextNode()) as HTMLElement;
+			let nextElement = (event.shiftKey ? walker.previousNode() : walker.nextNode()) as HTMLElement;
 
 			// If there is no next element, or it is outside the current scope, move focus to the
 			// next element after the node to restore to instead.
@@ -439,11 +370,11 @@ function useRestoreFocus({ scopeRef, restoreFocus, contain }: IUseRestoreFocus):
 
 				// Skip over elements within the scope, in case the scope immediately follows the node to restore.
 				do {
-					nextElement = (e.shiftKey ? walker.previousNode() : walker.nextNode()) as HTMLElement;
+					nextElement = (event.shiftKey ? walker.previousNode() : walker.nextNode()) as HTMLElement;
 				} while (isElementInScope(nextElement, scope));
 
-				e.preventDefault();
-				e.stopPropagation();
+				event.preventDefault();
+				event.stopPropagation();
 				if (nextElement) {
 					nextElement.focus();
 				} else {
@@ -470,12 +401,14 @@ function useRestoreFocus({ scopeRef, restoreFocus, contain }: IUseRestoreFocus):
 				});
 			}
 		};
-	}, [scopeRef, restoreFocus, contain]);
+	}, [items, restoreFocus, contain]);
 }
 
 /**
- * Create a [TreeWalker]{@link https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker}
- * that matches all focusable/tabbable elements.
+ * An object that represents the nodes that matches all focusable/tabbable elements.
+ *
+ * Based on `react-aria`'s implementation.
+ * {@link https://react-spectrum.adobe.com/react-aria/}
  *
  * @export
  * @param {HTMLElement} root

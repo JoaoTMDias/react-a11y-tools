@@ -6,6 +6,5 @@
  *
  * (c) 2021 joaodias.me
  */
-export * from "./usePreventScroll/index";
 export * from "./usePrevious";
 export * from "./useSafeLayoutEffect";

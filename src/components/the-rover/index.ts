@@ -7,7 +7,9 @@
  *
  * (c) 2021 joaodias.me
  */
-export { default as RoverProvider } from "./rover-provider/provider";
-export { default as useRover } from "./use-rover";
-export { default as useFocus } from "./use-focus-effect";
-export { RoverProviderProps } from "./index.d";
+import Provider from "./rover-provider/provider";
+import useRover from "./use-rover";
+import useFocus from "./use-focus-effect";
+export { IRoverProviderProps } from "./index.d";
+
+export { Provider as RoverProvider, useRover, useFocus };

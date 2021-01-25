@@ -1,9 +1,9 @@
 import { Meta, Story, Canvas, Preview, ArgsTable, Subtitle } from "@storybook/addon-docs/blocks";
 import { useRef } from "react";
 import { action } from "@storybook/addon-actions";
-import { RoverProvider, useRover, useFocus } from "../src/components/the-rover";
+import { RoverProvider, useRover, useFocus } from "../src/components/the-rover/index";
 
-<Meta title="Components" component={RoverProvider} />
+<Meta title="Components/The Rover" component={RoverProvider} />
 
 <style>{`
 	.sidenav {
@@ -140,9 +140,14 @@ export const SidenavLink = ({ disabled, children, onClick }) => {
 text here
 
 <Canvas>
-	<Story name="The Rover">
-		{() => (
-			<RoverProvider direction="vertical">
+	<Story
+		name="The Rover"
+		args={{
+			direction: "vertical",
+		}}
+	>
+		{(args) => (
+			<RoverProvider {...args}>
 				<nav className="sidenav" id="sidenav">
 					<span className="sidenav__label">Menu</span>
 					<ul className="sidenav__list">

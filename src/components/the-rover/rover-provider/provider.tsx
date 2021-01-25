@@ -6,21 +6,13 @@
  *
  * (c) 2021 joaodias.me
  */
-import React, { ReactElement, useReducer, useMemo, useEffect } from "react";
-import { RoverProviderProps, RovingContext } from "../index.d";
+import React, { ReactElement, useReducer, useEffect } from "react";
+import { IRoverProviderProps } from "../index.d";
 import { initialState, RoverContext } from "./context";
 import { reducer } from "./reducer";
 
-const Provider = ({ children, direction = "vertical" }: RoverProviderProps): ReactElement => {
+const Provider = ({ children, direction = "vertical" }: IRoverProviderProps): ReactElement => {
 	const [state, dispatch] = useReducer(reducer, initialState);
-
-	const context = useMemo<RovingContext>(
-		() => ({
-			state,
-			dispatch,
-		}),
-		[state],
-	);
 
 	useEffect(() => {
 		dispatch({
@@ -29,7 +21,12 @@ const Provider = ({ children, direction = "vertical" }: RoverProviderProps): Rea
 		});
 	}, [direction, dispatch]);
 
-	return <RoverContext.Provider value={context}>{children}</RoverContext.Provider>;
+	const value = {
+		state,
+		dispatch,
+	};
+
+	return <RoverContext.Provider value={value}>{children}</RoverContext.Provider>;
 };
 
 export default Provider;
