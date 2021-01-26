@@ -8,7 +8,6 @@
  */
 import React from "react";
 import { JSDOM } from "jsdom";
-import Logger from "js-logger";
 import { RovingAction, RovingState, TabStop } from "../../../src/components/the-rover/index.d";
 import { reducer } from "../../../src/components/the-rover/rover-provider/reducer";
 
@@ -38,16 +37,6 @@ describe("reducer", () => {
 	};
 
 	const buttonThreeId = "button-3";
-
-	beforeEach(() => {
-		Logger.warn = jest.fn();
-	});
-
-	afterEach(() => {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		Logger.warn.mockRestore();
-	});
 
 	describe("when registering a tab stop", () => {
 		describe("when no tab stops have been registered", () => {
@@ -141,17 +130,6 @@ describe("reducer", () => {
 				const result = reducer(givenState, action);
 				expect(result).toEqual(givenState);
 			});
-
-			it("should log a warning", () => {
-				const action: RovingAction = {
-					type: "REGISTER",
-					payload: buttonOneTabStop,
-				};
-
-				reducer(givenState, action);
-
-				expect(Logger.warn).toHaveBeenNthCalledWith(1, `${buttonOneId} tab stop already registered`);
-			});
 		});
 	});
 
@@ -173,17 +151,6 @@ describe("reducer", () => {
 				const result = reducer(givenState, action);
 
 				expect(result).toEqual(givenState);
-			});
-
-			it("should log a warning", () => {
-				const action: RovingAction = {
-					type: "UNREGISTER",
-					payload: { id: buttonOneId },
-				};
-
-				reducer(givenState, action);
-
-				expect(Logger.warn).toHaveBeenNthCalledWith(1, `${buttonOneId} tab stop already unregistered`);
 			});
 		});
 
@@ -283,12 +250,6 @@ describe("reducer", () => {
 				const result = reducer(givenState, action);
 				expect(result).toEqual(givenState);
 			});
-
-			it("should log a warning", () => {
-				reducer(givenState, action);
-
-				expect(Logger.warn).toHaveBeenNthCalledWith(1, `${buttonThreeId} tab stop not registered`);
-			});
 		});
 
 		describe("when the current tab stop is not the last tab stop", () => {
@@ -359,12 +320,6 @@ describe("reducer", () => {
 			it("should not change state", () => {
 				const result = reducer(givenState, action);
 				expect(result).toEqual(givenState);
-			});
-
-			it("should log a warning", () => {
-				reducer(givenState, action);
-
-				expect(Logger.warn).toHaveBeenNthCalledWith(1, `${buttonThreeId} tab stop not registered`);
 			});
 		});
 

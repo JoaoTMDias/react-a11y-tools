@@ -12,12 +12,31 @@ import { usePrevious } from "../../../hooks";
 import Announcer from "../announcer";
 
 export interface IRouteAnnouncerActions {
+	/**
+	 * The action predicate.
+	 * By default it is "Navigated to", but can be changed to whatever language.
+	 */
 	navigation: string;
-	page: string;
+
+	/**
+	 * The fallback predicate for actions.
+	 */
+	fallback: string;
 }
 export interface IRouteAnnouncerProps {
+	/**
+	 * An optional id for the `focus wrapper` HTML element.
+	 */
 	id?: string;
+
+	/**
+	 * History-based Location pathnme
+	 */
 	pathname?: H.History.Pathname;
+
+	/**
+	 * Content to be read by the screen-reader on the `aria-live` announcer
+	 */
 	action?: IRouteAnnouncerActions;
 }
 
@@ -32,7 +51,7 @@ export const defaultProps: Partial<IRouteAnnouncerProps> = {
 	id: DEFAULT_WRAPPER_ID,
 	action: {
 		navigation: "Navigated to",
-		page: "new page at",
+		fallback: "new page at",
 	},
 };
 
@@ -97,7 +116,7 @@ export const RouteAnnouncer: FunctionComponent<IRouteAnnouncerProps> = ({ id, pa
 		/* istanbul ignore next */
 		const firstHeading = hasHeading(id ?? DEFAULT_WRAPPER_ID);
 
-		let pageName = `${(action as IRouteAnnouncerActions).page} ${pathname}`;
+		let pageName = `${(action as IRouteAnnouncerActions).fallback} ${pathname}`;
 
 		if (hasTitle) {
 			pageName = document.title;

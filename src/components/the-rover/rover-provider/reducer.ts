@@ -6,7 +6,6 @@
  *
  * (c) 2021 joaodias.me
  */
-import logger from "js-logger";
 import {
 	RovingState,
 	RovingAction,
@@ -42,7 +41,6 @@ function registerAction(state: RovingState, action: IRovingActionWithPayload<"RE
 	});
 
 	if (index >= 0) {
-		logger.warn(`${newTabStop.id} tab stop already registered`);
 		return state;
 	}
 
@@ -82,8 +80,6 @@ function unregisterAction(
 	const filtered = state.tabStops.filter((tabStop) => tabStop.id !== id);
 
 	if (filtered.length === state.tabStops.length) {
-		logger.warn(`${id} tab stop already unregistered`);
-
 		return state;
 	}
 
@@ -111,7 +107,6 @@ function goToPreviousOrNext(
 	const index = state.tabStops.findIndex((tabStop) => tabStop.id === id);
 
 	if (index === -1) {
-		logger.warn(`${id} tab stop not registered`);
 		return state;
 	}
 

@@ -10,7 +10,12 @@ import { Link, RouteComponentProps, Router, useLocation } from "@reach/router";
 import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@testing-library/react";
 import React, { FunctionComponent, useEffect } from "react";
-import { defaultProps, hasHeading, IRouteAnnouncerProps, RouteAnnouncer } from "../../../src/components/announcer/route-announcer";
+import {
+	defaultProps,
+	hasHeading,
+	IRouteAnnouncerProps,
+	RouteAnnouncer,
+} from "../../../src/components/announcer/route-announcer";
 import { renderWithRouter } from "../../helpers/renderWithRouter";
 
 const Home: FunctionComponent<RouteComponentProps> = () => {
@@ -144,7 +149,7 @@ describe("<RouteAnnouncer />", () => {
 			// 3. The Announcer should have new text
 			await waitFor(() => {
 				expect(
-					screen.getByText(`${defaultProps.action?.navigation} ${defaultProps.action?.page} /contacts`),
+					screen.getByText(`${defaultProps.action?.navigation} ${defaultProps.action?.fallback} /contacts`),
 				).toBeInTheDocument();
 			});
 		});

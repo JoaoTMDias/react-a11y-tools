@@ -17,6 +17,5 @@ export {
 export * from "./components/audit";
 export { FocusTrap } from "./components/focus-trap";
 export { IFocusManager, IFocusManagerOptions, IFocusTrapProps } from "./components/focus-trap/index.d";
-export { useFocusManager } from "./components/focus-trap/use-focus-manager";
 export * from "./components/skip-links";
 export { RoverProvider, useRover, useFocus, IRoverProviderProps } from "./components/the-rover";

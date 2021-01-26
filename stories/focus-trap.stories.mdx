@@ -3,7 +3,17 @@ import { useRef, useState } from "react";
 import { action } from "@storybook/addon-actions";
 import { FocusTrap } from "../src/components/focus-trap/index";
 
-<Meta title="Components/Focus Trap" component={FocusTrap} />
+<Meta
+	title="Focus Management/Focus Trap"
+	component={FocusTrap}
+	parameters={{
+		previewTabs: {
+			"storybook/docs/panel": {
+				hidden: true,
+			},
+		},
+	}}
+/>
 
 <style>{`
 	.popover {

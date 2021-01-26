@@ -3,7 +3,17 @@ import { useRef } from "react";
 import { action } from "@storybook/addon-actions";
 import { RoverProvider, useRover, useFocus } from "../src/components/the-rover/index";
 
-<Meta title="Components/The Rover" component={RoverProvider} />
+<Meta
+	title="Focus Management"
+	component={RoverProvider}
+	parameters={{
+		previewTabs: {
+			"storybook/docs/panel": {
+				hidden: true,
+			},
+		},
+	}}
+/>
 
 <style>{`
 	.sidenav {
@@ -131,7 +141,7 @@ export const SidenavLink = ({ disabled, children, onClick }) => {
 	);
 };
 
-# The Rover
+# Rover
 
 <Subtitle>Subtitle here</Subtitle>
 
@@ -141,7 +151,7 @@ text here
 
 <Canvas>
 	<Story
-		name="The Rover"
+		name="Rover"
 		args={{
 			direction: "vertical",
 		}}
@@ -250,4 +260,4 @@ text here
 
 ### Props
 
-<ArgsTable story="The Rover" />
+<ArgsTable story="Rover" />
