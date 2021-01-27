@@ -7,8 +7,11 @@
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
 import { addons } from "@storybook/addons";
+import theme from "./theme";
 
 addons.setConfig({
+	initialActive: "docs",
 	panelPosition: "bottom",
 	viewMode: "docs",
+	theme,
 });

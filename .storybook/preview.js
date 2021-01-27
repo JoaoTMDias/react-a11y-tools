@@ -6,6 +6,7 @@
  *
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
+import theme from "./theme";
 
 export const parameters = {
 	viewMode: "docs",
@@ -16,4 +17,7 @@ export const parameters = {
 		manual: true,
 	},
 	actions: { argTypesRegex: "^on.*" },
+	docs: {
+		theme,
+	},
 };
