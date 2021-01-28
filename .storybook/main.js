@@ -1,5 +1,7 @@
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
+const MAX_ASSETS_SIZE = 1024 * 1024;
+
 module.exports = {
 	stories: ["../stories/*.stories.@(ts|tsx|js|jsx|mdx)"],
 	addons: [
@@ -29,6 +31,18 @@ module.exports = {
 	},
 	webpackFinal: async (config) => {
 		config.resolve.plugins.push(new TsconfigPathsPlugin({}));
-		return config;
+		return {
+			...config,
+			optimization: {
+				splitChunks: {
+					chunks: "all",
+					minSize: 30 * 1024,
+					maxSize: MAX_ASSETS_SIZE,
+				},
+			},
+			performance: {
+				maxAssetSize: MAX_ASSETS_SIZE,
+			},
+		};
 	},
 };
