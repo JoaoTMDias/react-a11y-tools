@@ -1,6 +1,8 @@
 import { Meta, Story, Canvas, Preview, ArgsTable, Subtitle } from "@storybook/addon-docs/blocks";
 import { useRef } from "react";
 import { action } from "@storybook/addon-actions";
+import { color } from "@storybook/theming";
+import styled from "@emotion/styled";
 import { RoverProvider, useRover, useFocus } from "../src/components/the-rover/index";
 
 <Meta
@@ -15,33 +17,28 @@ import { RoverProvider, useRover, useFocus } from "../src/components/the-rover/i
 	}}
 />
 
-<style>{`
-	.sidenav {
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: flex-start;
-		width: 20rem;
-		font-family: sans-serif;
-	}
-
+export const Sidenav = styled.nav`
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	width: 20rem;
+	font-family: sans-serif;
 	.sidenav__label {
 		height: 1.5rem;
 		margin: 0 0 1rem 0;
 		padding: 0;
 		border: 0;
 		text-align: left;
-		color: #555;
+		color: #889da9;
 		font-size: 12px;
 		text-transform: uppercase;
 		letter-spacing: 1px;
 	}
-
 	.sidenav__label,
 	.sidenav__list {
 		width: 100%;
 	}
-
 	.sidenav__list {
 		display: flex;
 		flex-direction: column;
@@ -52,7 +49,6 @@ import { RoverProvider, useRover, useFocus } from "../src/components/the-rover/i
 		list-style-type: none;
 		gap: 0.5rem;
 	}
-
 	.sidenav__list li,
 	.sidenav__link {
 		height: 3rem;
@@ -60,44 +56,45 @@ import { RoverProvider, useRover, useFocus } from "../src/components/the-rover/i
 		flex-direction: row;
 		align-items: center;
 	}
-
 	.sidenav__link {
 		flex-direction: space-between;
 		appearance: none;
 		border: none;
+		color: white;
 		background: transparent;
 		padding: 0.25rem 1rem;
 		border-radius: 0.25rem;
 	}
-
+	.sidenav__link:hover,
 	.sidenav__link:focus {
-		outline: 1px solid #fff;
-		outline-offset: -4px;
+		background: linear-gradient(145deg, #c8ffff, #a8d7dd);
+		box-shadow: 0 0 0 3px #35cecc, 20px 20px 60px hsl(188deg 47% 77% / 24%), -20px -20px 60px hsl(180deg 100% 90% / 15%);
 	}
-
-	.sidenav__link[tabindex='0'] {
-		background-color: black;
-		color: white;
+	.sidenav__link:focus {
+		outline: none;
+		background: linear-gradient(145deg, #c8ffff, #a8d7dd);
+		box-shadow: 0 0 0 3px #35cecc, 0 0 0 3px #35cecc, 20px 20px 60px hsl(188deg 47% 77% / 24%), -20px -20px 60px hsl(180deg
+						100% 90% / 15%);
 	}
-
-	.sidenav__link[tabindex='0'] .sidenav__counter {
-		background-color: #fff;
-		color: black;
+	.sidenav__link[tabindex="0"] {
+		background-color: #bbeff6;
+		color: #000a12;
 	}
-
+	.sidenav__link[tabindex="0"] .sidenav__counter {
+		background-color: #000a12;
+		color: #bbeff6;
+	}
 	.sidenav__list li,
 	.sidenav__list button,
 	.sidenav__left {
 		display: flex;
 		width: 100%;
 	}
-
 	.sidenav__icon {
 		width: 1.25rem;
 		height: 1.25rem;
 		margin-right: 0.5rem;
 	}
-
 	.sidenav__link-text {
 		margin: 0;
 		padding: 0;
@@ -108,15 +105,14 @@ import { RoverProvider, useRover, useFocus } from "../src/components/the-rover/i
 		margin-right: 0.5rem;
 		font-size: 1.25rem;
 	}
-
 	.sidenav__counter {
 		padding: 2px 8px;
-		background-color: #b9b9b9;
-		color: #222;
+		background-color: white;
+		color: #000a12;
 		border-radius: 1.25rem;
-		justify-self: flex-end
+		justify-self: flex-end;
 	}
-`}</style>
+`;
 
 export const SidenavLink = ({ disabled, children, onClick }) => {
 	const id = useRef("3bd4ad7f-298c-4ed7-8065-fdada2fd916d");
@@ -158,7 +154,7 @@ text here
 	>
 		{(args) => (
 			<RoverProvider {...args}>
-				<nav className="sidenav" id="sidenav">
+				<Sidenav className="sidenav" id="sidenav">
 					<span className="sidenav__label">Menu</span>
 					<ul className="sidenav__list">
 						<li>
@@ -252,7 +248,7 @@ text here
 							</SidenavLink>
 						</li>
 					</ul>
-				</nav>
+				</Sidenav>
 			</RoverProvider>
 		)}
 	</Story>

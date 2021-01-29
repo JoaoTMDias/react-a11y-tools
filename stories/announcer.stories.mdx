@@ -1,82 +1,87 @@
 import { createHistory, Link, LocationProvider, Router } from "@reach/router";
 import { ArgsTable, Canvas, Meta, Story, Subtitle } from "@storybook/addon-docs/blocks";
+import { color } from "@storybook/theming";
+import styled from "@emotion/styled";
 import { RouteAnnouncer } from "../src/components/announcer/route-announcer";
 
 <Meta title="Feedback/Announcer" component={RouteAnnouncer} />
 
-<style>{`
-	.page {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		font-family: sans-serif;
-		background: black;
-		color: white;
-		padding: 2rem;
-	}
+export const Page = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	font-family: sans-serif;
+	background: #000a12;
+	color: white;
+	padding: 2rem;
+`;
 
-	.inner {
-		padding: 2rem 0;
-	}
+export const Footer = styled.footer`
+	padding: 0 2rem;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	justify-content: space-around;
+	gap: 2rem;
+`;
 
-	a {
-		color: white;
-		text-decoration: none;
-	}
+export const FooterList = styled.ul`
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: grid;
+	grid-gap: 1rem;
+`;
 
-	.nav {
-		display: flex;
-		flex-direction: row;
-		gap: 1rem;
-	}
-
-	a[aria-current="page"] {
+export const Anchor = styled(Link)`
+	color: white;
+	text-decoration: none;
+	outline-offset: 8px;
+	&[aria-current="page"] {
 		text-decoration: underline;
+		text-decoration-color: white;
 	}
-
-	.footer {
-		width: 100%;
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		justify-content: space-around;
-		gap: 2rem;
+	&:focus {
+		outline: 1px solid ${color.secondary};
 	}
+`;
 
-	.footer__list {
-		margin: 0;
-		padding: 0;
-		list-style-type: none;
-		display: grid;
-		grid-gap: 1rem;
+export const FooterLink = styled.a`
+	color: white;
+	text-decoration: none;
+	&:focus {
+		text-decoration: underline;
+		outline: 1px solid ${color.secondary};
 	}
+`;
 
-	.footer__link {
-		border-bottom: 1px solid #fff;
-	}
-`}</style>
-
+export const Nav = styled.nav`
+	padding: 0 2rem;
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+`;
 export let history = createHistory(window);
 
 export const Home = () => (
-	<div className="page inner">
+	<Page>
 		<h1>Welcome</h1>
 		<p>You are on the welcome page</p>
-	</div>
+	</Page>
 );
 
 export const Dashboard = () => (
-	<div className="page inner">
+	<Page>
 		<h1>Dashboard</h1>
 		<p>You are on the dashboard page</p>
-	</div>
+	</Page>
 );
 
 export const Invoice = (props) => (
-	<div className="page inner">
+	<Page>
 		<h1>Invoice {props.invoiceId}</h1>
 		<p>You are on the invoice page</p>
-	</div>
+	</Page>
 );
 
 export const DemoWithRouter = () => {
@@ -84,15 +89,15 @@ export const DemoWithRouter = () => {
 		<LocationProvider history={history}>
 			{(context) => {
 				return (
-					<div className="page">
+					<Page>
 						<RouteAnnouncer pathname={context.location.pathname}>
 							<header>
-								<nav className="nav">
-									<Link to="/">Home</Link>
-									<Link to="/dashboard">Dashboard</Link>
-									<Link to="/invoices/123">Invoice 123</Link>
-									<Link to="/invoices/abc">Invoice ABC</Link>
-								</nav>
+								<Nav className="nav">
+									<Anchor to="/">Home</Anchor>
+									<Anchor to="/dashboard">Dashboard</Anchor>
+									<Anchor to="/invoices/123">Invoice 123</Anchor>
+									<Anchor to="/invoices/abc">Invoice ABC</Anchor>
+								</Nav>
 							</header>
 							<main>
 								<Router>
@@ -101,120 +106,120 @@ export const DemoWithRouter = () => {
 									<Invoice path="/invoices/:invoiceId" />
 								</Router>
 							</main>
-							<footer className="footer">
+							<Footer>
 								<div className="footer__column">
 									<h5>Features</h5>
-									<ul className="footer__list">
+									<FooterList>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Cool stuff
-											</a>
+											</FooterLink>
 										</li>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Random feature
-											</a>
+											</FooterLink>
 										</li>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Team feature
-											</a>
+											</FooterLink>
 										</li>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Stuff for developers
-											</a>
+											</FooterLink>
 										</li>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Another one
-											</a>
+											</FooterLink>
 										</li>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Last time
-											</a>
+											</FooterLink>
 										</li>
-									</ul>
+									</FooterList>
 								</div>
 								<div className="footer__column">
 									<h5>Resources</h5>
-									<ul className="footer__list">
+									<FooterList className="footer__list">
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Resource name
-											</a>
+											</FooterLink>
 										</li>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Resource
-											</a>
+											</FooterLink>
 										</li>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Another resource
-											</a>
+											</FooterLink>
 										</li>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Final resource
-											</a>
+											</FooterLink>
 										</li>
-									</ul>
+									</FooterList>
 								</div>
 								<div className="footer__column">
 									<h5>Resources</h5>
-									<ul className="footer__list">
+									<FooterList className="footer__list">
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Business
-											</a>
+											</FooterLink>
 										</li>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Education
-											</a>
+											</FooterLink>
 										</li>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Government
-											</a>
+											</FooterLink>
 										</li>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Gaming
-											</a>
+											</FooterLink>
 										</li>
-									</ul>
+									</FooterList>
 								</div>
 								<div className="footer__column">
 									<h5>About</h5>
-									<ul className="footer__list">
+									<FooterList className="footer__list">
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Team
-											</a>
+											</FooterLink>
 										</li>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Locations
-											</a>
+											</FooterLink>
 										</li>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Privacy
-											</a>
+											</FooterLink>
 										</li>
 										<li>
-											<a className="footer__link" href="#">
+											<FooterLink className="footer__link" href="#">
 												Terms
-											</a>
+											</FooterLink>
 										</li>
-									</ul>
+									</FooterList>
 								</div>
-							</footer>
+							</Footer>
 						</RouteAnnouncer>
-					</div>
+					</Page>
 				);
 			}}
 		</LocationProvider>

@@ -8,11 +8,20 @@ import { SkipLinks } from "../src/components/skip-links/index";
 
 <style>{`
 	.layout {
-		width: 100%;
+		width: auto;
+		padding: 2rem 4rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		font-family: sans-serif;
+		font-family: monospace;
+		background-color: #e7b9ff;
+		color: #000a12;
+		scroll-behaviour: smooth;
+	}
+
+	.container {
+		max-width: 60rem;
+		margin: 0 auto;
 	}
 
 	.header {
@@ -25,10 +34,46 @@ import { SkipLinks } from "../src/components/skip-links/index";
 		align-items: center;
 	}
 
+	h2 {
+		font-size: 72px;
+	}
+
+	a {
+		color: #000a12;
+	}
+
+	a:focus {
+		outline: 1px solid currentColor;
+		outline-offset: 4px;
+	}
+
 	.menu,
 	.main {
 		display: flex;
 		flex-direction: column;
+	}
+
+	#navigation-menu:focus,
+	#content:focus {
+		scroll-margin-top: 72px;
+		outline: 2px dotted #263238;
+	}
+
+	.content-paragraph {
+		column-count: 2;
+		column-gap: 2rem;
+		margin-bottom: 4rem;
+		font-size: 18px;
+		line-height: 1.618;
+	}
+
+	.first-letter {
+		float: left;
+		font-size: 56px;
+		line-height: 50px;
+		padding-top: 4px;
+		padding-right: 8px;
+		padding-left: 3px;
 	}
 
 	.menu ul {
@@ -47,41 +92,57 @@ export const Template = (args) => {
 	return (
 		<div className="layout">
 			<SkipLinks {...args} />
-			<header className="header">
-				<h1>Demo Page</h1>
-				<nav id="navigation-menu" className="menu" tabIndex={-1}>
-					<ul>
-						<li>
-							<a href="#website">Link 1</a>
-						</li>
-						<li>
-							<a href="#documentation">Link 2</a>
-						</li>
-						<li>
-							<a href="#gitlab">Link 3</a>
-						</li>
-					</ul>
-				</nav>
-			</header>
-			<main className="main" tabIndex={-1}>
-				<h2 id="content">This is the content</h2>
-				<p>
-					Lorem ipsum dolor sit amet, sed at alia posse minimum. Has adhuc liberavisse ne, movet laboramus consequuntur
-					vis in. Et has causae feugait atomorum, ad vel falli invenire. Rebum possit partiendo vix ad, ei vix tota
-					nullam vocent.
-				</p>
-				<a
-					id="website"
-					href="https://github.com/JoaoTMDias/react-accessible-tools"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Github Website
-				</a>
-				<a id="documentation" href="http://www.npmjs.org/" target="_blank" rel="noopener noreferrer">
-					NPM.js
-				</a>
-			</main>
+			<div className="container">
+				<header className="header">
+					<h1>Skip Links Demo</h1>
+					<nav id="navigation-menu" className="menu" tabIndex={-1}>
+						<ul>
+							<li>
+								<a href="#website">Link 1</a>
+							</li>
+							<li>
+								<a href="#documentation">Link 2</a>
+							</li>
+							<li>
+								<a href="#gitlab">Link 3</a>
+							</li>
+						</ul>
+					</nav>
+				</header>
+				<main id="content" className="main" tabIndex={-1}>
+					<h2>Bacon Ipsum</h2>
+					<p className="content-paragraph">
+						<span className="first-letter">B</span> eef ribs leberkas capicola cow swine turducken tri-tip meatball
+						drumstick short ribs. Meatball boudin ribeye tri-tip pancetta, filet mignon kevin venison turducken pork
+						loin. Porchetta buffalo kevin capicola tail pancetta shank corned beef bacon tongue beef ribs cow. Picanha
+						ham hock ribeye sausage.
+						<br />
+						<br />
+						Chislic cupim pig, hamburger jerky ribeye andouille sausage buffalo. Tenderloin t-bone beef pancetta boudin short
+						ribs pork loin kevin, spare ribs corned beef picanha filet mignon hamburger frankfurter ham hock. Prosciutto
+						chuck chislic hamburger, pork loin meatloaf biltong tongue ham hock strip steak pork belly turkey venison boudin
+						kevin. Sirloin capicola kevin ham spare ribs tri-tip swine leberkas pork loin cupim chislic jowl. Shoulder short
+						loin pork loin, filet mignon biltong venison beef spare ribs tongue sausage. T-bone porchetta sausage picanha
+						landjaeger shank venison beef bacon shankle rump.
+					</p>
+					<a
+						id="website"
+						href="https://github.com/JoaoTMDias/react-a11y-tools"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Repository on Github
+					</a>
+					<a
+						id="documentation"
+						href="https://www.npmjs.com/package/react-a11y-tools"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Package on npm
+					</a>
+				</main>
+			</div>
 		</div>
 	);
 };

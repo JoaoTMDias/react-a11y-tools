@@ -6,25 +6,28 @@
  *
  * (c) 2021 joaodias.me
  */
+import { color } from "@storybook/theming";
 import { create, themes } from "@storybook/theming/create";
+
+color.lightest = "#000a12";
 
 export default create({
 	...themes.dark,
 	base: "dark",
 
-	colorPrimary: "#34c5ea",
-	colorSecondary: "#346aea",
+	colorPrimary: "hsl(265, 100%, 47%)",
+	colorSecondary: "#35cecc",
 
 	// UI
-	appBg: "hsla(240, 7%, 2%, 1)",
-	appContentBg: "hsla(240, 7%, 3%, 1)",
-	appBorderColor: "#3c3f48",
+	appBg: "#000a12",
+	appContentBg: "#000a12",
+	appBorderColor: "#3C3F48",
 	appBorderRadius: 4,
 
 	// Toolbar default and active colors
-	barTextColor: "hsla(240, 7%, 96%, 1)",
-	barSelectedColor: "hsla(240, 7%, 100%, 1)",
-	barBg: "hsla(240, 7%, 4%, 1)",
+	barTextColor: "#FFFFFF",
+	barSelectedColor: "#35cecc",
+	barBg: "#000a12",
 
 	// Brand
 	brandTitle: "react-a11y-tools",
