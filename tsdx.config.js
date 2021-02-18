@@ -8,9 +8,11 @@
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
 const postcss = require("rollup-plugin-postcss");
+const analyze = require("rollup-plugin-analyzer");
 
 module.exports = {
 	rollup(config, options) {
+		config.plugins.push(analyze());
 		config.plugins.push(
 			postcss({
 				modules: true,

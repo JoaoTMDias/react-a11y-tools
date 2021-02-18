@@ -8,7 +8,10 @@
  */
 import React, { FunctionComponent, useState } from "react";
 import Announcer from "../announcer";
-import MessagesAnnouncerContext, { defaultMessagesAnnouncerContext, IMessagesAnnouncerContext } from "./context";
+import MessagesAnnouncerContext, {
+	defaultMessagesAnnouncerContext,
+	IMessagesAnnouncerContext,
+} from "./context";
 
 /**
  * The `MessagesAnnouncer` is a context-based announcer for the generic types of messages.

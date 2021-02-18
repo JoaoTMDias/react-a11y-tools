@@ -63,9 +63,9 @@ export function focusWithoutScrolling(element: HTMLElement): void {
 	if (supportsPreventScroll()) {
 		element.focus({ preventScroll: true });
 	} else {
-		const IScrollableElements = getAllScrollableElements(element);
+		const allScrollableElements = getAllScrollableElements(element);
 		element.focus();
-		restoreScrollPosition(IScrollableElements);
+		restoreScrollPosition(allScrollableElements);
 	}
 }
 

@@ -7,7 +7,6 @@
  *
  * (c) 2021 joaodias.me
  */
-export * from "./chain";
-export * from "./getScrollParent";
 export * from "./isBrowser";
-export * from "./isMobileSafari";
+export * from "./run-after-transition";
+export { focusWithoutScrolling } from "./focus-without-scrolling";

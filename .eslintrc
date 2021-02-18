@@ -1,5 +1,10 @@
 {
-	"extends": ["plugin:@typescript-eslint/recommended", "prettier", "prettier/react"],
+	"extends": [
+		"plugin:@typescript-eslint/recommended",
+		"plugin:cypress/recommended",
+		"prettier",
+		"prettier/react"
+	],
 	"env": {
 		"browser": true
 	},

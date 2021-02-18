@@ -1,0 +1,176 @@
+import { useState } from "react";
+import { createHistory, Link, LocationProvider, Router } from "@reach/router";
+import { ArgsTable, Canvas, Meta, Story, Subtitle } from "@storybook/addon-docs/blocks";
+import { color } from "@storybook/theming";
+import styled from "@emotion/styled";
+import { RouteAnnouncer } from "../../src/components/announcer/route-announcer";
+import { MessagesAnnouncer, useMessagesAnnouncer } from "../../src/components/announcer/messages";
+import { DemoWithRouter } from "./route";
+import { DemoMessagesAnnouncer, DemoForm } from "./messages";
+
+<Meta title="Feedback/Announcer" component={RouteAnnouncer} />
+
+# Announcer
+
+<Subtitle>Announces client-side changes for assistive technologies.</Subtitle>
+
+## Why
+
+Despite the fact that the process of building single-page web applications has come a long way, some accessibility aspects are left out of consideration when using React or React-based frameworks.
+One of these aspects is focus management and route changes announcements being available to screen-reader users.
+
+It so happens that, with "traditional" web pages, each time the user navigates to another page, the screen-reader announces that and it's been like this for the last 20 years.
+
+It just works.
+
+However, with the advent of single-page apps, this does not happen when using javascript to handle page routing. As this is not a concern for most common react-router authors, it's not a default setting.
+
+This accessibility violation also happens on pages that use javascript to add or remove content to/from the DOM.
+For instance, common tasks such as form filling, validation and submission are most of the time left out.
+
+Hence, there are these huge accessibility barriers being raised for users that rely on these assistive technologies. And besides that, it violates one of the ten general usability heuristics for the web - "Visibility of system status".
+
+If the user is not informed that a change has occurred whilst operating the system, how will it know what to expect and where to navigate?
+
+For pointing-device users, this may not seem like a huge design flaw. However, for those that rely on assistive technologies, this is a no-deal breaker.
+
+## Route Announcer
+
+The `RouteAnnouncer` adds an ARIA live region that announces route changes.
+
+It stands at the top of the component React tree (preferably, first or second rendered component) and listens for a change on the location's `pathname` (eg. Going from `/events` to `/contacts`).
+
+The rest of the content is placed inside a wrapper, alongside the ARIA live region HTML element.
+
+Whenever the location changes, it adds a message onto that HTML element, thus triggering the screen-reader and make it read it's text content out loud (eg: `Navigated to Events`).
+To avoid the user having to manually insert the message everytime the location changes, it queries the DOM for common elements and patterns that might signal something that can identify the new page.
+These are: `h1` headings (there should be only one per page), text content inside the `title` tag in the `head` element or, as a fallback, the pathname itself.
+
+<Canvas>
+	<Story
+		name="Route Announcer"
+		height="50vh"
+		inline
+		args={{
+			pathname: "/",
+		}}
+	>
+		{() => <DemoWithRouter />}
+	</Story>
+</Canvas>
+
+### Props
+
+<ArgsTable story="Route Announcer" />
+
+### Usage
+
+#### Using Next.js
+
+#### Using `@reach/router`
+
+#### Using `react-router`
+
+### Compatibility
+
+## Messages Announcer
+
+As said before, with single-page webapps it is common that very important changes happening aren completely ignored by screen readers.
+This happens because we are manipulating the DOM with JavasScript and screen readers look for the focus events and not these changes.
+
+Like the `RouteAnnouncer`, with the `Messages` announcer we create an ARIA live region that, if found by a screen reader, will be monitored and any changes to the content will be announced to the user.
+
+<Canvas>
+	<Story name="Messages Announcer">
+		<DemoMessagesAnnouncer />
+	</Story>
+</Canvas>
+
+### Props
+
+<ArgsTable story="Messages Announcer" />
+
+### Usage
+
+The component takes advantage of React's `context` api, so that we can use the updater function anywhere inside the `MessagesAnnouncer` children.
+
+### With Functional Components
+
+To send messages inside a functional component, you can take advantage of the `useMessageAnnouncer` custom hook.
+
+First import the hook at the top of the file:
+
+```jsx
+import { useMessageAnnouncer } from "react-a11y-tools";
+```
+
+Then, after you've defined your component, save the hook to a constant:
+
+```jsx
+const setMessage = useMessageAnnouncer();
+```
+
+Finally, use the function whenever you'd like to announce something.
+
+```jsx
+function onClick() {
+	setMessage("The user has performed an action that it will be announced!");
+}
+
+return (
+	<button type="button" onClick={onClick}>
+		Send Message
+	</button>
+);
+```
+
+#### Forms
+
+You can use component to wrap the contents of a form, for instance.
+This is render the form and, alongside it, the ARIA live region.
+
+```jsx
+import { MessagesAnnouncer } from "react-a11y-tools";
+...
+return (
+	<MessagesAnnouncer>
+		<form>
+			...
+		</form>
+	</MessagesAnnouncer>
+);
+```
+
+#### Global usage
+
+In order to have the announcer available for the whole app, consider wrapping the content with it.
+This way you can access the `setMessage` function in any component.
+
+```jsx
+import { MessagesAnnouncer } from "react-a11y-tools";
+...
+return (
+	<MessagesAnnouncer>
+		<YourApp />
+	</MessagesAnnouncer>
+);
+```
+
+#### With Route Announcer
+
+You can use the `MessageAnnouncer` along with the `RouteAnnouncer`.
+However, it is advised that you still place the `RouteAnnouncer` at the top and then inside it, the `MessageAnnouncer`.
+
+```jsx
+import { MessagesAnnouncer } from "react-a11y-tools";
+...
+return (
+	<RouteAnnouncer pathname={pathname}>
+		<MessagesAnnouncer>
+			<YourApp />
+		</MessagesAnnouncer>
+	</RouteAnnouncer>
+);
+```
+
+### Compatibility

@@ -29,9 +29,13 @@ export const SkipLinks: FunctionComponent<ISkipLinksProps> = ({ items }) => {
 	function renderLinks() {
 		const list =
 			items && items.length > 0 ? (
-				items.map((item) => <SkipLink key={item.target} target={item.target} text={item.text} />)
+				items.map((item) => <SkipLink key={item.target} {...item} />)
 			) : (
-				<SkipLink target={SKIP_LINK_DEFAULT_PROPS.target} text={SKIP_LINK_DEFAULT_PROPS.text} />
+				<SkipLink
+					as={SKIP_LINK_DEFAULT_PROPS.as}
+					target={SKIP_LINK_DEFAULT_PROPS.target}
+					text={SKIP_LINK_DEFAULT_PROPS.text}
+				/>
 			);
 
 		return (

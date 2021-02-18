@@ -1,0 +1,169 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 3,
+    "passes": 2,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-02-10T01:07:49.623Z",
+    "end": "2021-02-10T01:07:59.564Z",
+    "duration": 9941,
+    "testsRegistered": 3,
+    "passPercent": 66.66666666666666,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "01133c49-9163-4fc2-a50f-3a029e4f8d6d",
+      "title": "",
+      "fullFile": "cypress/integration/announcer.spec.js",
+      "file": "cypress/integration/announcer.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "327e4a23-8f38-4bb5-be49-ad1a272b9284",
+          "title": "Route Announcer",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should be empty by default",
+              "fullTitle": "Route Announcer should be empty by default",
+              "timedOut": null,
+              "duration": 2010,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cov_5dipannpl().f[2]++;\ncov_5dipannpl().s[9]++;\ncy.get(\"@announcer\").should(\"not.have.text\");",
+              "err": {},
+              "uuid": "218d0b55-5a36-4371-a3bb-ed6ac8a1dd9f",
+              "parentUUID": "327e4a23-8f38-4bb5-be49-ad1a272b9284",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [
+            {
+              "uuid": "2eb9e618-ff0c-4554-844e-d58eb289e11b",
+              "title": "change routes and announce them",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "By their level-1 heading",
+                  "fullTitle": "Route Announcer change routes and announce them By their level-1 heading",
+                  "timedOut": null,
+                  "duration": 1403,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cov_5dipannpl().f[4]++;\ncov_5dipannpl().s[12]++;\ncy.get(\"@BlogLink\").click();\ncov_5dipannpl().s[13]++;\ncy.focused().tab().tab().tab().tab().click();\ncov_5dipannpl().s[14]++;\ncy.get(\"#root h1\").then(function ($heading) {\n  cov_5dipannpl().f[5]++;\n  var articlePageHeading = (cov_5dipannpl().s[15]++, $heading.text());\n  cov_5dipannpl().s[16]++;\n  cy.get(\"@announcer\").should(\"have.text\", \"Navigated to \".concat(articlePageHeading));\n  cov_5dipannpl().s[17]++;\n  cy.get(\"@ArticleLink\").should(\"have.attr\", \"aria-current\", \"page\");\n  cov_5dipannpl().s[18]++;\n  cy.get(\"body\").tab().tab().tab().tab().tab().click();\n  cov_5dipannpl().s[19]++;\n  return cy.get(\"#root h1\");\n}).then(function ($heading) {\n  cov_5dipannpl().f[6]++;\n  var listPageHeading = (cov_5dipannpl().s[20]++, $heading.text());\n  cov_5dipannpl().s[21]++;\n  cy.get(\"@announcer\").should(\"have.text\", \"Navigated to \".concat(listPageHeading));\n  cov_5dipannpl().s[22]++;\n  cy.get(\"@BlogLink\").should(\"have.attr\", \"aria-current\", \"page\");\n});",
+                  "err": {},
+                  "uuid": "be867ded-3985-4372-b07a-d47a4bd2e4fc",
+                  "parentUUID": "2eb9e618-ff0c-4554-844e-d58eb289e11b",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "By their document title",
+                  "fullTitle": "Route Announcer change routes and announce them By their document title",
+                  "timedOut": null,
+                  "duration": 5405,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "cov_5dipannpl().f[7]++;\ncov_5dipannpl().s[24]++;\ncy.get(\"@BlogLink\").click();\ncov_5dipannpl().s[25]++;\ncy.focused().tab().tab().tab().tab().click();\ncov_5dipannpl().s[26]++;\ncy.title().then(function ($heading) {\n  cov_5dipannpl().f[8]++;\n  var productPageTitle = (cov_5dipannpl().s[27]++, $heading);\n  cov_5dipannpl().s[28]++;\n  cy.get(\"@announcer\").should(\"have.text\", \"Navigated to \".concat(productPageTitle));\n  cov_5dipannpl().s[29]++;\n  cy.get(\"@ProductLink\").should(\"have.attr\", \"aria-current\", \"page\");\n  cov_5dipannpl().s[30]++;\n  cy.get(\"body\").tab().click();\n  cov_5dipannpl().s[31]++;\n  return cy.get(\"#root h1\");\n}).then(function ($heading) {\n  cov_5dipannpl().f[9]++;\n  var listPageHeading = (cov_5dipannpl().s[32]++, $heading.text());\n  cov_5dipannpl().s[33]++;\n  cy.get(\"@announcer\").should(\"have.text\", \"Navigated to \".concat(listPageHeading));\n  cov_5dipannpl().s[34]++;\n  cy.get(\"@BlogLink\").should(\"have.attr\", \"aria-current\", \"page\");\n});",
+                  "err": {
+                    "message": "AssertionError: Timed out retrying after 4000ms: expected '<div#rat-route-announcer.rat__announcer>' to have text 'Navigated to Storybook', but the text was 'Navigated to Article Title'",
+                    "estack": "AssertionError: Timed out retrying after 4000ms: expected '<div#rat-route-announcer.rat__announcer>' to have text 'Navigated to Storybook', but the text was 'Navigated to Article Title'\n    at Context.eval (http://localhost:6006/__cypress/tests?p=cypress/integration/announcer.spec.js:744:30)",
+                    "diff": "- 'Navigated to Article Title'\n+ 'Navigated to Storybook'\n"
+                  },
+                  "uuid": "4e1c2b6c-9e16-4d2f-9bb2-c782069ca806",
+                  "parentUUID": "2eb9e618-ff0c-4554-844e-d58eb289e11b",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "be867ded-3985-4372-b07a-d47a4bd2e4fc"
+              ],
+              "failures": [
+                "4e1c2b6c-9e16-4d2f-9bb2-c782069ca806"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 6808,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [
+            "218d0b55-5a36-4371-a3bb-ed6ac8a1dd9f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2010,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}

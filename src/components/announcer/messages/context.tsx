@@ -28,6 +28,8 @@ export const defaultMessagesAnnouncerContext: IMessagesAnnouncerContext = {
 	setMessage: () => {},
 };
 
-const MessagesAnnouncerContext = createContext<IMessagesAnnouncerContext>(defaultMessagesAnnouncerContext);
+const MessagesAnnouncerContext = createContext<IMessagesAnnouncerContext>(
+	defaultMessagesAnnouncerContext,
+);
 
 export default MessagesAnnouncerContext;

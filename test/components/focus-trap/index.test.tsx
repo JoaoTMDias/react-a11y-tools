@@ -12,10 +12,10 @@ import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import ReactDOM from "react-dom";
-import { IFocusTrapProps } from "../../../src/components/focus-trap/index.d";
-import { FocusTrap } from "../../../src/components/focus-trap/index";
+import { IFocusManagerProps } from "../../../src/components/focus-manager/index.d";
+import { FocusManager } from "../../../src/components/focus-manager/index";
 
-describe("FocusTrap", () => {
+describe("FocusManager", () => {
 	beforeEach(() => {
 		// @ts-ignore
 		jest.spyOn(window, "requestAnimationFrame").mockImplementation((cb) => cb());
@@ -29,11 +29,11 @@ describe("FocusTrap", () => {
 	describe("focus containment", () => {
 		it("should contain focus within the scope", () => {
 			render(
-				<FocusTrap contain>
+				<FocusManager contain>
 					<input data-testid="input1" />
 					<input data-testid="input2" />
 					<input data-testid="input3" />
-				</FocusTrap>,
+				</FocusManager>,
 			);
 
 			const input1 = screen.getByTestId("input1");
@@ -76,7 +76,7 @@ describe("FocusTrap", () => {
 
 		it("should work with nested elements", () => {
 			const { getByTestId } = render(
-				<FocusTrap contain>
+				<FocusManager contain>
 					<input data-testid="input1" />
 					<div>
 						<input data-testid="input2" />
@@ -84,7 +84,7 @@ describe("FocusTrap", () => {
 							<input data-testid="input3" />
 						</div>
 					</div>
-				</FocusTrap>,
+				</FocusManager>,
 			);
 
 			const input1 = getByTestId("input1");
@@ -117,13 +117,13 @@ describe("FocusTrap", () => {
 
 		it("should skip non-tabbable elements", () => {
 			const { getByTestId } = render(
-				<FocusTrap contain>
+				<FocusManager contain>
 					<input data-testid="input1" />
 					<div />
 					<input data-testid="input2" />
 					<div tabIndex={-1} />
 					<input data-testid="input3" />
-				</FocusTrap>,
+				</FocusManager>,
 			);
 
 			const input1 = getByTestId("input1");
@@ -156,11 +156,11 @@ describe("FocusTrap", () => {
 
 		it("should do nothing if a modifier key is pressed", () => {
 			const { getByTestId } = render(
-				<FocusTrap contain>
+				<FocusManager contain>
 					<input data-testid="input1" />
 					<input data-testid="input2" />
 					<input data-testid="input3" />
-				</FocusTrap>,
+				</FocusManager>,
 			);
 
 			const input1 = getByTestId("input1");
@@ -177,16 +177,16 @@ describe("FocusTrap", () => {
 		it("should work with multiple focus scopes", () => {
 			const { getByTestId } = render(
 				<div>
-					<FocusTrap contain>
+					<FocusManager contain>
 						<input data-testid="input1" />
 						<input data-testid="input2" />
 						<input data-testid="input3" />
-					</FocusTrap>
-					<FocusTrap contain>
+					</FocusManager>
+					<FocusManager contain>
 						<input data-testid="input4" />
 						<input data-testid="input5" />
 						<input data-testid="input6" />
-					</FocusTrap>
+					</FocusManager>
 				</div>,
 			);
 
@@ -247,10 +247,10 @@ describe("FocusTrap", () => {
 		it("uses document.activeElement instead of e.relatedTarget on blur to determine if focus is still in scope", () => {
 			const { getByTestId } = render(
 				<div>
-					<FocusTrap contain>
+					<FocusManager contain>
 						<input data-testid="input1" />
 						<input data-testid="input2" />
-					</FocusTrap>
+					</FocusManager>
 				</div>,
 			);
 
@@ -276,7 +276,7 @@ describe("FocusTrap", () => {
 
 	describe("focus restoration", () => {
 		it("should restore focus to the previously focused node on unmount", async () => {
-			const Test: React.FunctionComponent<IFocusTrapProps> = (props) => {
+			const Test: React.FunctionComponent<IFocusManagerProps> = (props) => {
 				const [isVisible, setIsVisible] = React.useState(false);
 				return (
 					<div>
@@ -284,9 +284,9 @@ describe("FocusTrap", () => {
 							Show Menu
 						</button>
 						{isVisible && (
-							<FocusTrap {...props}>
+							<FocusManager {...props}>
 								<div className="popover" id="popover-id" tabIndex={-1}>
-									<div className="popover__wrapper" role="alertdialog" aria-labelledby="popover-title">
+									<div className="popover__wrapper" role="dialog" aria-labelledby="popover-title">
 										<div className="popover__body">
 											<header className="popover__header">
 												<h4 className="popover__header__title" id="popover-title">
@@ -363,7 +363,7 @@ describe("FocusTrap", () => {
 										</div>
 									</div>
 								</div>
-							</FocusTrap>
+							</FocusManager>
 						)}
 					</div>
 				);
@@ -391,11 +391,11 @@ describe("FocusTrap", () => {
 						<button data-testid="trigger" />
 						<input data-testid="after" />
 						{show && (
-							<FocusTrap contain={false} restoreFocus autoFocus>
+							<FocusManager contain={false} restoreFocus autoFocus>
 								<input data-testid="input1" />
 								<input data-testid="input2" />
 								<input data-testid="input3" />
-							</FocusTrap>
+							</FocusManager>
 						)}
 					</div>
 				);
@@ -430,11 +430,11 @@ describe("FocusTrap", () => {
 						<button data-testid="trigger" />
 						<input data-testid="after" />
 						{show && (
-							<FocusTrap contain={false} restoreFocus autoFocus>
+							<FocusManager contain={false} restoreFocus autoFocus>
 								<input data-testid="input1" />
 								<input data-testid="input2" />
 								<input data-testid="input3" />
-							</FocusTrap>
+							</FocusManager>
 						)}
 					</div>
 				);
@@ -463,11 +463,11 @@ describe("FocusTrap", () => {
 						<input data-testid="before" />
 						<button data-testid="trigger" />
 						{show && (
-							<FocusTrap contain={false} restoreFocus autoFocus>
+							<FocusManager contain={false} restoreFocus autoFocus>
 								<input data-testid="input1" />
 								<input data-testid="input2" />
 								<input data-testid="input3" />
-							</FocusTrap>
+							</FocusManager>
 						)}
 						<input data-testid="after" />
 					</div>
@@ -499,12 +499,12 @@ describe("FocusTrap", () => {
 	describe("auto focus", () => {
 		it("should auto focus the first tabbable element in the scope on mount", () => {
 			const { getByTestId } = render(
-				<FocusTrap autoFocus>
+				<FocusManager autoFocus>
 					<div />
 					<input data-testid="input1" />
 					<input data-testid="input2" />
 					<input data-testid="input3" />
-				</FocusTrap>,
+				</FocusManager>,
 			);
 
 			const input1 = getByTestId("input1");
@@ -513,12 +513,12 @@ describe("FocusTrap", () => {
 
 		it("should do nothing if something is already focused in the scope", () => {
 			const { getByTestId } = render(
-				<FocusTrap autoFocus>
+				<FocusManager autoFocus>
 					<div />
 					<input data-testid="input1" />
 					<input data-testid="input2" autoFocus />
 					<input data-testid="input3" />
-				</FocusTrap>,
+				</FocusManager>,
 			);
 
 			const input2 = getByTestId("input2");
@@ -527,7 +527,7 @@ describe("FocusTrap", () => {
 	});
 
 	describe("nested focus scopes", () => {
-		it("should make child FocusTraps the active scope regardless of DOM structure", () => {
+		it("should make child FocusManagers the active scope regardless of DOM structure", () => {
 			const ChildComponent: React.FunctionComponent = (props) => {
 				return ReactDOM.createPortal(props.children, document.body);
 			};
@@ -536,22 +536,22 @@ describe("FocusTrap", () => {
 				return (
 					<div>
 						<input data-testid="outside" />
-						<FocusTrap restoreFocus contain>
+						<FocusManager restoreFocus contain>
 							<input data-testid="input1" />
 							{show && (
 								<ChildComponent>
-									<FocusTrap restoreFocus contain>
+									<FocusManager restoreFocus contain>
 										<input data-testid="input3" />
-									</FocusTrap>
+									</FocusManager>
 								</ChildComponent>
 							)}
-						</FocusTrap>
+						</FocusManager>
 					</div>
 				);
 			}
 
 			const { getByTestId, rerender } = render(<Test />);
-			// Set a focused node and make first FocusTrap the active scope
+			// Set a focused node and make first FocusManager the active scope
 			const input1 = getByTestId("input1");
 			act(() => {
 				input1.focus();

@@ -7,15 +7,9 @@
  *
  * (c) 2021 joaodias.me
  */
-export * from "./components/announcer/messages/index";
-export {
-	defaultProps as RouteDefaultProps,
-	IRouteAnnouncerActions,
-	IRouteAnnouncerProps,
-	RouteAnnouncer,
-} from "./components/announcer/route-announcer";
-export * from "./components/audit";
-export { FocusTrap } from "./components/focus-trap";
-export { IFocusManager, IFocusManagerOptions, IFocusTrapProps } from "./components/focus-trap/index.d";
-export * from "./components/skip-links";
-export { RoverProvider, useRover, useFocus, IRoverProviderProps } from "./components/the-rover";
+export { MessagesAnnouncer, useMessagesAnnouncer } from "./components/announcer/messages/index";
+export { RouteAnnouncer } from "./components/announcer/route-announcer";
+export { KeyboardOnly } from "./components/keyboard-only";
+export { FocusManager, useFocusManager } from "./components/focus-manager/index";
+export { SkipLinks } from "./components/skip-links";
+export { RoverProvider, useRover, useFocus } from "./components/roving-tabindex/index";

@@ -14,22 +14,32 @@ jobs:
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+		- name: Checkout repo
+			uses: actions/checkout@v2
 
-      - name: Use Node ${{ matrix.node }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
+		- name: Use Node ${{ matrix.node }}
+			uses: actions/setup-node@v1
+			with:
+				node-version: ${{ matrix.node }}
 
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
+		- name: Install deps and build (with cache)
+			uses: bahmutov/npm-install@v1
 
-      - name: Lint
-        run: npm run lint
+		- name: Lint
+			run: npm run lint
 
-      - name: Test
-        run: npm run test --ci --coverage --maxWorkers=2
+		- name: Test
+			run: npm run test --ci --coverage --maxWorkers=2
 
-      - name: Build
-        run: yarn build
+		- name: Cypress
+			uses: cypress-io/github-action@v1
+			with:
+				start: npm run storybook
+				wait-on: 'http://localhost:6006'
+				config: baseUrl=https://localhost:6006
+				record: true
+            env:
+				CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
+		- name: Build
+			run: npm run build

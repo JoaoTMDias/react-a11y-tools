@@ -3,7 +3,7 @@ const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const MAX_ASSETS_SIZE = 1024 * 1024;
 
 module.exports = {
-	stories: ["../stories/*.stories.@(ts|tsx|js|jsx|mdx)"],
+	stories: ["../stories/**/*.stories.@(ts|tsx|js|jsx|mdx)"],
 	addons: [
 		{
 			name: "@storybook/addon-docs",
@@ -17,7 +17,6 @@ module.exports = {
 		},
 		"@storybook/addon-links",
 		"@storybook/addon-essentials",
-		"@storybook/preset-scss",
 	],
 	typescript: {
 		check: true,

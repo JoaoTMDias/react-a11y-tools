@@ -6,18 +6,19 @@
  *
  * (c) 2021 joaodias.me
  */
-import classNames from "classnames";
-import React, { FunctionComponent } from "react";
-import styles from "./styles.module.scss";
+import React, { FunctionComponent, useCallback, KeyboardEvent } from "react";
+import "./styles.css";
 
 export interface ISkipLink {
 	target: string;
 	text: string;
+	as?: "link" | "button";
 }
 
-export const SKIP_LINK_DEFAULT_PROPS = {
+export const SKIP_LINK_DEFAULT_PROPS: ISkipLink = {
 	target: "#content",
 	text: "Skip to main content",
+	as: "link",
 };
 
 /**
@@ -26,11 +27,27 @@ export const SKIP_LINK_DEFAULT_PROPS = {
  * @param {ISkipLink} props
  * @returns {JSX.Element}
  */
-export const SkipLink: FunctionComponent<ISkipLink> = ({ target, text }) => {
-	const classes = classNames(styles.link, "skip-links__item");
+export const SkipLink: FunctionComponent<ISkipLink> = ({ target, text, as }) => {
+	const onKeyUp = useCallback(
+		(event: KeyboardEvent<HTMLButtonElement>) => {
+			if (event.key === "Enter" || event.key === " ") {
+				const targetElement: HTMLElement | null = document.querySelector(target);
 
+				targetElement?.focus();
+			}
+		},
+		[target],
+	);
+
+	if (as === "button") {
+		return (
+			<button type="button" onKeyUp={onKeyUp} className="skip-links__item">
+				{text}
+			</button>
+		);
+	}
 	return (
-		<a href={target} className={classes}>
+		<a href={target} className="skip-links__item">
 			{text}
 		</a>
 	);

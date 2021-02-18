@@ -6,5 +6,4 @@
  *
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
-declare module "*.scss";
-declare let __DEV__: boolean;
+declare module "*.css";

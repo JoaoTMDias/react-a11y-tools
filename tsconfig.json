@@ -39,6 +39,20 @@
 			"helpers/*": ["./src/helpers/*"],
 			"hooks/*": ["./src/hooks/*"],
 			"typings/*": ["./src/typings/*"]
-		}
-	}
+		},
+		"types": ["jest", "cypress", "@testing-library/cypress"]
+	},
+	"exclude": [
+		"**/*.spec.ts",
+		"**/*.test.tsx",
+		"node_modules",
+		"build",
+		"dist",
+		"example",
+		"coverage",
+		"jest-coverage",
+		"cypress-coverage",
+		"**/test/*",
+		"**/stories/*"
+	]
 }

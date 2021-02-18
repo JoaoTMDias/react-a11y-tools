@@ -96,7 +96,12 @@ export function hasHeading(id: string): HasHeadingResults {
  * @param {IRouteAnnouncerProps} props
  * @returns {JSX.Element}
  */
-export const RouteAnnouncer: FunctionComponent<IRouteAnnouncerProps> = ({ id, pathname, action, children }) => {
+export const RouteAnnouncer: FunctionComponent<IRouteAnnouncerProps> = ({
+	id,
+	pathname,
+	action,
+	children,
+}) => {
 	const [text, setText] = useState("");
 	const previousPathname = usePrevious(pathname);
 

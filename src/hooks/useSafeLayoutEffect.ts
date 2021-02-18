@@ -7,8 +7,14 @@
  *
  * (c) 2021 joaodias.me, No Rights Reserved.
  */
-
 import { useLayoutEffect } from "react";
 import { isBrowser } from "../helpers/isBrowser";
 
-export const useSafeLayoutEffect = isBrowser ? useLayoutEffect : /* istanbul ignore next */ () => {};
+/**
+ * `useLayoutEffect` that does not show warning when server-side rendering.
+ *
+ * See {@link https://medium.com/@alexandereardon/uselayouteffect-and-ssr-192986cdcf7a|Alex Reardon's article} for more info.
+ */
+export const useSafeLayoutEffect = isBrowser
+	? useLayoutEffect
+	: /* istanbul ignore next */ () => {};

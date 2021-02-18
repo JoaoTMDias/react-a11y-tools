@@ -4,9 +4,7 @@ module.exports = {
 	},
 	moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
 	collectCoverage: true,
-	testURL: "http://localhost/",
-	setupFiles: ["raf/polyfill"],
-	collectCoverage: true,
+	coverageDirectory: "jest-coverage",
 	coverageReporters: ["lcov", "text-summary", "clover"],
 	coverageThreshold: {
 		global: {
@@ -16,9 +14,11 @@ module.exports = {
 			lines: 95,
 		},
 	},
+	testURL: "http://localhost/",
+	setupFiles: ["raf/polyfill"],
 	moduleNameMapper: {
 		"\\.(css|scss)$": "identity-obj-proxy",
 		"\\.(png|gif)$": "identity-obj-proxy",
 	},
-	modulePathIgnorePatterns: ["npm-cache", ".npm", ".cache"],
+	modulePathIgnorePatterns: ["npm-cache", ".npm", ".cache", "<rootDir>/cypress/"],
 };

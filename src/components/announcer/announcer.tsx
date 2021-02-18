@@ -48,7 +48,13 @@ const styles: React.CSSProperties = {
  * @param {IAnnouncerProps} props
  * @returns {JSX.Element}
  */
-export const Announcer: FunctionComponent<IAnnouncerProps> = ({ id, styles, ariaLive, ariaAtomic, text }) => {
+export const Announcer: FunctionComponent<IAnnouncerProps> = ({
+	id,
+	styles,
+	ariaLive,
+	ariaAtomic,
+	text,
+}) => {
 	/**
 	 * Renders the contents inside the announcer div
 	 *

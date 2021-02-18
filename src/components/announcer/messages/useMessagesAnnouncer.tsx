@@ -9,7 +9,7 @@
 import { useContext } from "react";
 import MessagesAnnouncerContext, { ISetMessage } from "./context";
 
-export type TUseMessagesAnnouncerReturns = (message: ISetMessage) => void;
+type TUseMessagesAnnouncerReturns = (message: ISetMessage) => void;
 
 /**
  * Hook for sending messages to the `MessagesAnnouncer` context provider
