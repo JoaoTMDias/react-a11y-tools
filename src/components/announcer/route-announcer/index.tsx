@@ -6,7 +6,6 @@
  *
  * (c) 2021 joaodias.me
  */
-import * as H from "history";
 import React, { FunctionComponent, useCallback, useEffect, useState } from "react";
 import { usePrevious } from "../../../hooks";
 import Announcer from "../announcer";
@@ -32,7 +31,7 @@ export interface IRouteAnnouncerProps {
 	/**
 	 * History-based Location pathnme
 	 */
-	pathname?: H.History.Pathname;
+	pathname?: string;
 
 	/**
 	 * Content to be read by the screen-reader on the `aria-live` announcer
