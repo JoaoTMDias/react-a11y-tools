@@ -1,6 +1,6 @@
-# REACT A11Y TOOLS
+# React A11y Tools
 
-These are a small set of React components that facilitate creating accessible design systems, web apps or websites.
+A small React component library that aims to ease the process of creating accessible design systems, web apps or websites
 <br />
 <p>
   <img alt="Latest Release" src="https://badgen.net/npm/v/react-a11y-tools"/>
