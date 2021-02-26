@@ -14,8 +14,8 @@ const analyze = require("rollup-plugin-analyzer");
 
 module.exports = {
 	rollup(config, options) {
-		config.plugins.push(analyze());
 		config.plugins.push(
+			analyze(),
 			postcss({
 				modules: true,
 				plugins: [

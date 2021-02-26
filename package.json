@@ -20,6 +20,7 @@
 		"test:cypress": "cypress open",
 		"test:cypress-headless": "cypress run --browser chrome --headless",
 		"test:cypress-record": "cypress run --record --key process.env.CYPRESS_RECORD_KEY",
+		"test": "npm run test:jest && npm run test:cypress-headless",
 		"test:ci": "npm run test:coverage && npm run test:cypress-headless",
 		"format:fix": "npm run prettier:base -- --write 'src/**/*.{ts,tsx,js,jsx}'",
 		"lint": "tsdx lint src --fix",
