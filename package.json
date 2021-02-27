@@ -33,7 +33,7 @@
 		"build:gatsby": "npm run build --prefix ./documentation",
 		"build:storybook": "build-storybook -c .storybook -o public/docs",
 		"build:documentation": "npm run build:storybook && npm run build:gatsby",
-		"reinstall": "rm -rf node_modules && npm run clean && npm install",
+		"reinstall": "rm -rf node_modules && clear && npm install",
 		"pretest": "rm -rf .nyc_output || true",
 		"posttest": "npm run report:combined",
 		"mkdir:reports": "mkdir reports || true",
