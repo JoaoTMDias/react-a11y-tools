@@ -125,6 +125,7 @@ sftp-config.json
 
 ### Our compiled code ###
 dist/
+public/
 styleguide/
 
 ### Our Coverage Reports ###
