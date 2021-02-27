@@ -31,15 +31,5 @@ jobs:
 		- name: Test
 			run: npm run test --ci --coverage --maxWorkers=2
 
-		- name: Cypress
-			uses: cypress-io/github-action@v1
-			with:
-				start: npm run storybook
-				wait-on: 'http://localhost:6006'
-				config: baseUrl=https://localhost:6006
-				record: true
-            env:
-				CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-
 		- name: Build
 			run: npm run build
