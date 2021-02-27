@@ -79,6 +79,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.12.16",
 		"@cypress/code-coverage": "^3.9.2",
+		"@emotion/styled-base": "^11.0.0",
 		"@size-limit/preset-small-lib": "^4.9.2",
 		"@storybook/addon-essentials": "^6.1.18",
 		"@storybook/addon-info": "^5.3.21",
