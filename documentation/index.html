@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<style>
+			html {
+				-ms-text-size-adjust: 100%;
+				-webkit-text-size-adjust: 100%;
+				font: 100%/1.45em Inter, -apple-system, BlinkMacSystemFont, Open Sans, Roboto, Segoe UI,
+					Oxygen, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+				box-sizing: border-box;
+				overflow-y: scroll;
+				--color-black: #120d10;
+				--color-white: #fff;
+				--color-primary: #bc027f;
+				--color-primary-dark: #a7026a;
+				--color-link: rgba(167, 2, 106, 0.05);
+			}
+			body {
+				margin: 0;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				font-weight: 400;
+				word-wrap: break-word;
+				-webkit-font-kerning: normal;
+				font-kerning: normal;
+				font-feature-settings: "kern", "liga", "clig", "calt";
+				background-color: var(--color-white);
+				color: var(--color-black);
+				background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1500'%3E%3Cdefs%3E%3Crect stroke='%23ffffff' stroke-width='0.75' width='1' height='1' id='s'/%3E%3Cpattern id='a' width='3' height='3' patternUnits='userSpaceOnUse' patternTransform='rotate(103 1000 750) scale(10) translate(-900 -675)'%3E%3Cuse fill='%23fafafa' href='%23s' y='2'/%3E%3Cuse fill='%23fafafa' href='%23s' x='1' y='2'/%3E%3Cuse fill='%23f5f5f5' href='%23s' x='2' y='2'/%3E%3Cuse fill='%23f5f5f5' href='%23s'/%3E%3Cuse fill='%23f0f0f0' href='%23s' x='2'/%3E%3Cuse fill='%23f0f0f0' href='%23s' x='1' y='1'/%3E%3C/pattern%3E%3Cpattern id='b' width='7' height='11' patternUnits='userSpaceOnUse' patternTransform='rotate(103 1000 750) scale(10) translate(-900 -675)'%3E%3Cg fill='%23ebebeb'%3E%3Cuse href='%23s'/%3E%3Cuse href='%23s' y='5'/%3E%3Cuse href='%23s' x='1' y='10'/%3E%3Cuse href='%23s' x='2' y='1'/%3E%3Cuse href='%23s' x='2' y='4'/%3E%3Cuse href='%23s' x='3' y='8'/%3E%3Cuse href='%23s' x='4' y='3'/%3E%3Cuse href='%23s' x='4' y='7'/%3E%3Cuse href='%23s' x='5' y='2'/%3E%3Cuse href='%23s' x='5' y='6'/%3E%3Cuse href='%23s' x='6' y='9'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='h' width='5' height='13' patternUnits='userSpaceOnUse' patternTransform='rotate(103 1000 750) scale(10) translate(-900 -675)'%3E%3Cg fill='%23ebebeb'%3E%3Cuse href='%23s' y='5'/%3E%3Cuse href='%23s' y='8'/%3E%3Cuse href='%23s' x='1' y='1'/%3E%3Cuse href='%23s' x='1' y='9'/%3E%3Cuse href='%23s' x='1' y='12'/%3E%3Cuse href='%23s' x='2'/%3E%3Cuse href='%23s' x='2' y='4'/%3E%3Cuse href='%23s' x='3' y='2'/%3E%3Cuse href='%23s' x='3' y='6'/%3E%3Cuse href='%23s' x='3' y='11'/%3E%3Cuse href='%23s' x='4' y='3'/%3E%3Cuse href='%23s' x='4' y='7'/%3E%3Cuse href='%23s' x='4' y='10'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='c' width='17' height='13' patternUnits='userSpaceOnUse' patternTransform='rotate(103 1000 750) scale(10) translate(-900 -675)'%3E%3Cg fill='%23e5e5e5'%3E%3Cuse href='%23s' y='11'/%3E%3Cuse href='%23s' x='2' y='9'/%3E%3Cuse href='%23s' x='5' y='12'/%3E%3Cuse href='%23s' x='9' y='4'/%3E%3Cuse href='%23s' x='12' y='1'/%3E%3Cuse href='%23s' x='16' y='6'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='d' width='19' height='17' patternUnits='userSpaceOnUse' patternTransform='rotate(103 1000 750) scale(10) translate(-900 -675)'%3E%3Cg fill='%23ffffff'%3E%3Cuse href='%23s' y='9'/%3E%3Cuse href='%23s' x='16' y='5'/%3E%3Cuse href='%23s' x='14' y='2'/%3E%3Cuse href='%23s' x='11' y='11'/%3E%3Cuse href='%23s' x='6' y='14'/%3E%3C/g%3E%3Cg fill='%23e0e0e0'%3E%3Cuse href='%23s' x='3' y='13'/%3E%3Cuse href='%23s' x='9' y='7'/%3E%3Cuse href='%23s' x='13' y='10'/%3E%3Cuse href='%23s' x='15' y='4'/%3E%3Cuse href='%23s' x='18' y='1'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='e' width='47' height='53' patternUnits='userSpaceOnUse' patternTransform='rotate(103 1000 750) scale(10) translate(-900 -675)'%3E%3Cg fill='%23bc027f'%3E%3Cuse href='%23s' x='2' y='5'/%3E%3Cuse href='%23s' x='16' y='38'/%3E%3Cuse href='%23s' x='46' y='42'/%3E%3Cuse href='%23s' x='29' y='20'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='f' width='59' height='71' patternUnits='userSpaceOnUse' patternTransform='rotate(103 1000 750) scale(10) translate(-900 -675)'%3E%3Cg fill='%23bc027f'%3E%3Cuse href='%23s' x='33' y='13'/%3E%3Cuse href='%23s' x='27' y='54'/%3E%3Cuse href='%23s' x='55' y='55'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='g' width='139' height='97' patternUnits='userSpaceOnUse' patternTransform='rotate(103 1000 750) scale(10) translate(-900 -675)'%3E%3Cg fill='%23bc027f'%3E%3Cuse href='%23s' x='11' y='8'/%3E%3Cuse href='%23s' x='51' y='13'/%3E%3Cuse href='%23s' x='17' y='73'/%3E%3Cuse href='%23s' x='99' y='57'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23a)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23b)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23h)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23c)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23d)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23e)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23f)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23g)' width='100%25' height='100%25'/%3E%3C/svg%3E");
+				background-attachment: fixed;
+				background-size: cover;
+			}
+			.page {
+				display: grid;
+				grid-template-rows: 110px 1fr 32px;
+				grid-gap: 2rem;
+			}
+			.header {
+				width: 100%;
+				margin: 0 auto;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+			}
+			.header__container {
+				width: auto;
+				display: grid;
+				place-items: center;
+				grid-template-columns: 3rem 1fr;
+				grid-gap: 1rem;
+			}
+			.header__logo {
+				width: 3rem;
+				height: 3rem;
+			}
+			.header__title {
+				font-size: clamp(1.625rem, calc(12px + 1.3vw), 1.95rem);
+				text-align: left;
+			}
+			.header__container,
+			.main-content {
+				max-width: 60rem;
+				margin: 0 auto;
+				padding: 1.5rem 2rem;
+			}
+			.main-content {
+				width: 100%;
+			}
+			.page__subheading,
+			.page__title {
+				width: 100%;
+				margin: 0 auto;
+				text-align: center;
+			}
+			.page__title {
+				max-width: 12ch;
+				font-weight: 700;
+				margin-bottom: 3rem;
+				font-size: clamp(2.763rem, calc(12px + 3.575vw), 3.738rem);
+				line-height: 1.1;
+			}
+			.page__title__highlight {
+				color: var(--color-primary);
+			}
+			.page__subheading {
+				max-width: 56ch;
+				font-weight: 400;
+				line-height: 1.618;
+				font-size: clamp(1.495rem, calc(12px + 0.78vw), 1.625rem);
+			}
+			.page__nav {
+				display: flex;
+				flex-direction: row;
+				margin-top: 2.5rem;
+			}
+			.link,
+			.page__nav {
+				justify-content: center;
+				gap: 1rem;
+			}
+			.link {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				display: inline-flex;
+				align-items: center;
+				transition: all 0.25s ease 0s;
+				-webkit-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				position: relative;
+				white-space: nowrap;
+				vertical-align: middle;
+				outline: none;
+				width: auto;
+				line-height: 1.2;
+				border-radius: 0.375rem;
+				font-weight: 500;
+				height: 4rem;
+				min-width: 3rem;
+				font-size: 1.2rem;
+				padding-left: 40px;
+				padding-right: 40px;
+				text-decoration: none;
+				background-color: var(--color-link);
+				color: var(--color-black);
+			}
+			.link:focus,
+			.link:hover,
+			a:focus,
+			a:hover {
+				background-color: var(--color-black);
+				color: var(--color-white);
+			}
+			a {
+				position: relative;
+				color: var(--color-primary);
+				-webkit-text-decoration-line: underline;
+				text-decoration-line: underline;
+				-webkit-text-decoration-style: dotted;
+				text-decoration-style: dotted;
+				outline: none;
+			}
+			a:focus,
+			a:hover {
+				text-decoration: none;
+			}
+			.link:after,
+			a:after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: transparent;
+				box-shadow: 0 0 0 3px var(--color-black);
+				border-radius: inherit;
+				transform: scale(1.25);
+				opacity: 0;
+			}
+			.link:focus:after,
+			a:focus:after {
+				transform: scale(1);
+				opacity: 1;
+			}
+			.link__icon {
+				display: grid;
+				place-items: center;
+			}
+			.link--primary {
+				background-color: var(--color-primary-dark);
+				color: var(--color-white);
+			}
+			.footer {
+				display: grid;
+				place-items: center;
+			}
+
+			@media (prefers-reduced-motion: no-preference) {
+				.link:after,
+				a:after {
+					transition: all 128ms ease-out;
+				}
+			}
+		</style>
+		<title>React A11y Tools</title>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<meta
+			name="description"
+			content="Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need."
+		/>
+		<meta property="og:title" content="React A11y Tools" />
+		<meta
+			property="og:description"
+			content="Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need."
+		/>
+		<meta property="og:type" content="website" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:creator" content="@joaotmdias" />
+		<meta name="twitter:title" content="Homepage" />
+		<meta
+			name="twitter:description"
+			content="Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need."
+		/>
+		<link
+			rel="icon"
+			href="/favicon-32x32.png"
+			type="image/png"
+		/>
+		<meta name="theme-color" content="#663399" />
+	</head>
+	<body>
+		<div class="page">
+			<header class="header">
+				<div class="header__container">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="65"
+						height="65"
+						class="header__logo"
+						fill="none"
+						role="presentation"
+						focusable="false"
+						viewBox="0 0 65 65"
+					>
+						<path
+							fill="url(#paint0_linear)"
+							d="M52.07 23.012c-2.548.74-12.56.09-14.051 4.09-2.61 6.997 2.04 20.316 3.94 26.964.983 3.43-4.471 4.663-4.991 1.092-1.005-6.912-3.343-11.683-4.187-12.608-.372-.409-.72-.409-1.086.009-.842.953-3.18 5.708-4.182 12.6-.52 3.57-5.972 2.337-4.992-1.093 1.903-6.648 6.55-19.967 3.942-26.964-1.49-4-11.504-3.35-14.05-4.09-2.694-.782-1.72-4.873 1.342-4.03 5.554 1.526 18.486 1.509 18.486 1.509s12.931.017 18.485-1.51c3.063-.842 4.038 3.25 1.344 4.031zM32.24 8.342a5.264 5.264 0 015.265 5.264 5.264 5.264 0 11-10.53 0 5.264 5.264 0 015.266-5.264zm0-7.517C14.569.825.242 15.15.242 32.825c0 17.673 14.327 32 32 32 17.674 0 32-14.327 32-32 0-17.674-14.326-32-32-32"
+						></path>
+						<path
+							stroke="#fff"
+							stroke-miterlimit="10"
+							stroke-width="0.265"
+							d="M62.322 32.824c0-16.612-13.468-30.079-30.081-30.079-16.612 0-30.081 13.467-30.081 30.079 0 16.614 13.469 30.08 30.08 30.08 16.614 0 30.081-13.467 30.081-30.08v0z"
+						></path>
+						<defs>
+							<linearGradient
+								id="paint0_linear"
+								x1="15"
+								x2="57"
+								y1="8"
+								y2="53"
+								gradientUnits="userSpaceOnUse"
+							>
+								<stop offset="0.005" stop-color="#BC027F"></stop>
+								<stop offset="1" stop-color="#8002BC"></stop>
+							</linearGradient>
+						</defs>
+					</svg>
+					<h1 class="header__title">React <abbr title="Accessibility">A11y</abbr> Tools</h1>
+				</div>
+			</header>
+			<main class="main-content">
+				<h2 class="page__title">
+					Build <span class="page__title__highlight">accessible experiences</span> for the web
+				</h2>
+				<p class="page__subheading">
+					A small React component library that aims to ease the process of creating accessible
+					design systems, web apps or websites.
+				</p>
+				<nav class="page__nav">
+					<a class="link link--primary" href="/docs/index.html"
+						>Get Started<span class="link__icon"
+							><svg
+								stroke="currentColor"
+								fill="currentColor"
+								stroke-width="0"
+								viewBox="0 0 448 512"
+								font-size="0.8em"
+								role="presentation"
+								focusable="false"
+								height="1rem"
+								width="1rem"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"
+								></path></svg></span
+					></a>
+					<br /><a
+						class="link"
+						href="https://github.com/joaotmdias/react-a11y-tools"
+						target="_blank"
+						rel="noopener noreferrer"
+						><span class="link__icon"
+							><svg
+								stroke="currentColor"
+								fill="currentColor"
+								stroke-width="0"
+								version="1.1"
+								viewBox="0 0 32 32"
+								role="presentation"
+								focusable="false"
+								height="1.5rem"
+								width="1.5rem"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M16 5.343c-6.196 0-11.219 5.023-11.219 11.219 0 4.957 3.214 9.162 7.673 10.645 0.561 0.103 0.766-0.244 0.766-0.54 0-0.267-0.010-1.152-0.016-2.088-3.12 0.678-3.779-1.323-3.779-1.323-0.511-1.296-1.246-1.641-1.246-1.641-1.020-0.696 0.077-0.682 0.077-0.682 1.126 0.078 1.72 1.156 1.72 1.156 1.001 1.715 2.627 1.219 3.265 0.931 0.102-0.723 0.392-1.219 0.712-1.498-2.49-0.283-5.11-1.246-5.11-5.545 0-1.226 0.438-2.225 1.154-3.011-0.114-0.285-0.501-1.426 0.111-2.97 0 0 0.941-0.301 3.085 1.15 0.894-0.25 1.854-0.373 2.807-0.377 0.953 0.004 1.913 0.129 2.809 0.379 2.14-1.453 3.083-1.15 3.083-1.15 0.613 1.545 0.227 2.685 0.112 2.969 0.719 0.785 1.153 1.785 1.153 3.011 0 4.31-2.624 5.259-5.123 5.537 0.404 0.348 0.761 1.030 0.761 2.076 0 1.5-0.015 2.709-0.015 3.079 0 0.299 0.204 0.648 0.772 0.538 4.455-1.486 7.666-5.69 7.666-10.645 0-6.195-5.023-11.219-11.219-11.219z"
+								></path></svg></span
+						>Go to Github</a
+					>
+				</nav>
+			</main>
+			<footer class="footer">
+				<p>
+					Built by
+					<a href="https://joaodias.me">João Dias</a>
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>
