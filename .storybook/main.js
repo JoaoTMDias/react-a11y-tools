@@ -1,5 +1,6 @@
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
-
+const path = require("path");
+const toPath = (_path) => path.join(process.cwd(), _path);
 const MAX_ASSETS_SIZE = 1024 * 1024;
 
 module.exports = {
@@ -30,6 +31,13 @@ module.exports = {
 	},
 	webpackFinal: async (config) => {
 		config.resolve.plugins.push(new TsconfigPathsPlugin({}));
+		config.resolve.alias = {
+			...config.resolve.alias,
+			"@emotion/core": toPath("node_modules/@emotion/react"),
+			"@emotion/styled": toPath("node_modules/@emotion/styled"),
+			"emotion-theming": toPath("node_modules/@emotion/react"),
+		};
+
 		return {
 			...config,
 			optimization: {
